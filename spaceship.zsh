@@ -34,6 +34,7 @@ if [ ! -n "$SPACESHIP_PROMPT_ORDER" ]; then
     haskell
     julia
     docker
+    dockercompose
     aws
     venv
     conda
@@ -221,6 +222,14 @@ SPACESHIP_DOCKER_PREFIX="${SPACESHIP_DOCKER_PREFIX:="on "}"
 SPACESHIP_DOCKER_SUFFIX="${SPACESHIP_DOCKER_SUFFIX:="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"}"
 SPACESHIP_DOCKER_SYMBOL="${SPACESHIP_DOCKER_SYMBOL:="🐳 "}"
 SPACESHIP_DOCKER_COLOR="${SPACESHIP_DOCKER_COLOR:="cyan"}"
+
+# DOCKER COMPOSE
+SPACESHIP_DOCKERCOMPOSE_SHOW="${SPACESHIP_DOCKERCOMPOSE_SHOW:=true}"
+SPACESHIP_DOCKERCOMPOSE_PREFIX="${SPACESHIP_DOCKERCOMPOSE_PREFIX:="with "}"
+SPACESHIP_DOCKERCOMPOSE_SUFFIX="${SPACESHIP_DOCKERCOMPOSE_SUFFIX:="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"}"
+SPACESHIP_DOCKERCOMPOSE_SYMBOL="${SPACESHIP_DOCKERCOMPOSE_SYMBOL:="🐙  "}"
+SPACESHIP_DOCKERCOMPOSE_UP_COLOR="${SPACESHIP_DOCKERCOMPOSE_UP_COLOR:="green"}"
+SPACESHIP_DOCKERCOMPOSE_DOWN_COLOR="${SPACESHIP_DOCKERCOMPOSE_DOWN_COLOR:="red"}"
 
 # VENV
 SPACESHIP_VENV_SHOW="${SPACESHIP_VENV_SHOW:=true}"
@@ -913,6 +922,36 @@ spaceship_docker() {
     "$SPACESHIP_DOCKER_PREFIX" \
     "${SPACESHIP_DOCKER_SYMBOL}v${docker_version}" \
     "$SPACESHIP_DOCKER_SUFFIX"
+}
+
+# DOCKERCOMPOSE
+# Show current docker-compose status
+spaceship_dockercompose() {
+  [[ $SPACESHIP_DOCKERCOMPOSE_SHOW == false ]] && return
+
+  _exists docker-compose || return
+
+  # Show Docker-compose status when docker-compose file exists
+  [[ -f docker-compose.yml ]] || return
+
+  local dockercompose_status
+
+  docker-compose ps 2>/dev/null | tail -n+3 | while read line
+  do
+    CONTAINER_LETTER_POSITION=$(echo $line | awk 'match($0,"_"){print RSTART}')
+    CONTAINER_LETTER=$(echo ${line:$CONTAINER_LETTER_POSITION:1} | tr '[:lower:]' '[:upper:]')
+    if [[ $line == *"Up"* ]]; then
+      dockercompose_status+="%{$fg_bold[$SPACESHIP_DOCKERCOMPOSE_UP_COLOR]%}"$CONTAINER_LETTER""
+    else
+      dockercompose_status+="%{$fg_bold[$SPACESHIP_DOCKERCOMPOSE_DOWN_COLOR]%}"$CONTAINER_LETTER""
+    fi
+  done
+
+  _prompt_section \
+    "" \
+    "$SPACESHIP_DOCKERCOMPOSE_PREFIX" \
+    "${SPACESHIP_DOCKERCOMPOSE_SYMBOL}${dockercompose_status}" \
+    "$SPACESHIP_DOCKERCOMPOSE_SUFFIX"
 }
 
 # Amazon Web Services (AWS)

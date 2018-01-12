@@ -52,6 +52,7 @@ Currently it shows:
 * Current version of Haskell Tool Stack (`λ`)
 * Current Julia version (`ஃ`)
 * Current Docker version and connected machine (`🐳`).
+* Current Docker-compose status of each service (`🐙 `).
 * Current Amazon Web Services (AWS) profile (`☁️`) ([Using named profiles](http://docs.aws.amazon.com/cli/latest/userguide/cli-multiple-profiles.html))
 * Current Python virtualenv.
 * Current Conda virtualenv (`🅒 `).
@@ -183,6 +184,7 @@ SPACESHIP_PROMPT_ORDER=(
   haskell       # Haskell Stack section
   julia         # Julia section
   docker        # Docker section
+  dockercompose # Docker-compose section
   aws           # Amazon Web Services section
   venv          # virtualenv section
   conda         # conda virtualenv section
@@ -487,6 +489,19 @@ Docker section is shown only in directories that contain `Dockerfile` or `docker
 | `SPACESHIP_DOCKER_SUFFIX` | `$SPACESHIP_PROMPT_DEFAULT_SUFFIX` | Suffix after the Docker section |
 | `SPACESHIP_DOCKER_SYMBOL` | `🐳 ` | Character to be shown before Docker version |
 | `SPACESHIP_DOCKER_COLOR` | `cyan` | Color of Docker section |
+
+### Docker-compose (`dockercompose`)
+
+Docker-compose section is shown only in directories that contain a `docker-compose.yml` file.
+
+| Variable | Default | Meaning |
+| :------- | :-----: | ------- |
+| `SPACESHIP_DOCKERCOMPOSE_SHOW` | `true` | Show current Docker-compose services status or not |
+| `SPACESHIP_DOCKERCOMPOSE_PREFIX` | `with ` | Prefix before the Docker-compose section |
+| `SPACESHIP_DOCKERCOMPOSE_SUFFIX` | `$SPACESHIP_PROMPT_DEFAULT_SUFFIX` | Suffix after the Docker-compose section |
+| `SPACESHIP_DOCKERCOMPOSE_SYMBOL` | `🐙 ` | Character to be shown before Docker-compose status |
+| `SPACESHIP_DOCKERCOMPOSE_UP_COLOR` | `green` | Color of service that is up |
+| `SPACESHIP_DOCKERCOMPOSE_DOWN_COLOR` | `red` | Color of service that is down |
 
 ### Amazon Web Services (AWS) (`aws`)
 
