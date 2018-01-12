@@ -279,6 +279,7 @@ SPACESHIP_BATTERY_CHARGING_SYMBOL="${SPACESHIP_BATTERY_CHARGING_SYMBOL:="⇡"}"
 SPACESHIP_BATTERY_DISCHARGING_SYMBOL="${SPACESHIP_BATTERY_DISCHARGING_SYMBOL:="⇣"}"
 SPACESHIP_BATTERY_FULL_SYMBOL="${SPACESHIP_BATTERY_FULL_SYMBOL:="•"}"
 SPACESHIP_BATTERY_THRESHOLD="${SPACESHIP_BATTERY_THRESHOLD:=10}"
+SPACESHIP_BATTERY_NAME="${SPACESHIP_BATTERY_NAME:="battery"}"
 
 # VI_MODE
 SPACESHIP_VI_MODE_SHOW="${SPACESHIP_VI_MODE_SHOW:=true}"
@@ -1071,7 +1072,7 @@ spaceship_battery() {
     battery_percent="$( echo $battery_data | grep -oE '[0-9]{1,3}%' )"
     battery_status="$( echo $battery_data | awk -F '; *' 'NR==2 { print $2 }' )"
   elif _exists upower; then
-    local battery=$(command upower -e | grep battery | head -1)
+    local battery=$(command upower -e | grep "${SPACESHIP_BATTERY_NAME}" | head -1)
 
     # Return if no battery
     [[ -z $battery ]] && return
