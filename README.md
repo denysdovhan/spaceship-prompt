@@ -31,6 +31,7 @@ Currently it shows:
   * `⇡` — ahead of remote branch;
   * `⇣` — behind of remote branch;
   * `⇕` — diverged chages.
+* Easy Git prompt customization
 * Current Mercurial bookmark/branch and rich repo status:
   * `?` — untracked changes;
   * `+` — uncommitted changes in the index;
