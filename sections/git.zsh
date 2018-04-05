@@ -1,6 +1,9 @@
 #
 # Git
 #
+# Builds a Git prompt section from the array SPACESHIP_GIT_ORDER. Each element
+# ELEMENT in the array corresponds to a function spaceship_git_ELEMENT
+# defined in a file sections/git_ELEMENT.
 
 # ------------------------------------------------------------------------------
 # Configuration
@@ -9,32 +12,36 @@
 SPACESHIP_GIT_SHOW="${SPACESHIP_GIT_SHOW=true}"
 SPACESHIP_GIT_PREFIX="${SPACESHIP_GIT_PREFIX="on "}"
 SPACESHIP_GIT_SUFFIX="${SPACESHIP_GIT_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"}"
-SPACESHIP_GIT_SYMBOL="${SPACESHIP_GIT_SYMBOL=" "}"
+if [ -z "$SPACESHIP_GIT_ORDER" ]; then
+  SPACESHIP_GIT_ORDER=(
+    branch
+    status
+  )
+fi
 
 # ------------------------------------------------------------------------------
 # Dependencies
 # ------------------------------------------------------------------------------
 
-source "$SPACESHIP_ROOT/sections/git_branch.zsh"
-source "$SPACESHIP_ROOT/sections/git_status.zsh"
+for subsection in "$SPACESHIP_ROOT"/sections/git_*.zsh; do
+  source $subsection
+done
 
 # ------------------------------------------------------------------------------
 # Section
 # ------------------------------------------------------------------------------
 
-# Show both git branch and git status:
-#   spaceship_git_branch
-#   spaceship_git_status
 spaceship_git() {
-  [[ $SPACESHIP_GIT_SHOW == false ]] && return
+  [[ $SPACESHIP_GIT_SHOW == false || -z $SPACESHIP_GIT_ORDER ]] && return
 
-  local git_branch="$(spaceship_git_branch)" git_status="$(spaceship_git_status)"
+  spaceship::is_git || return
 
-  [[ -z $git_branch ]] && return
+  # prefix${^array} prefixes each element in $array with prefix
+  local git_prompt=$(spaceship::compose_prompt git_${^SPACESHIP_GIT_ORDER})
+
+  [[ -z $git_prompt ]] && return
 
   spaceship::section \
     'white' \
-    "$SPACESHIP_GIT_PREFIX" \
-    "${git_branch}${git_status}" \
-    "$SPACESHIP_GIT_SUFFIX"
+    "$SPACESHIP_GIT_PREFIX$git_prompt$SPACESHIP_GIT_SUFFIX"
 }
