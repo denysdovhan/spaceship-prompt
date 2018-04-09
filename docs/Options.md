@@ -178,6 +178,8 @@ Git status indicators is shown only when you have dirty repository.
 | `SPACESHIP_GIT_STATUS_AHEAD` | `⇡` | Indicator for unpushed changes (ahead of remote branch) |
 | `SPACESHIP_GIT_STATUS_BEHIND` | `⇣` | Indicator for unpulled changes (behind of remote branch) |
 | `SPACESHIP_GIT_STATUS_DIVERGED` | `⇕` | Indicator for diverged chages (diverged with remote branch) |
+| `SPACESHIP_GIT_STATUS_ASSUME_UNCHANGED` | `⤒` | Indicator for the presence of an `--assume-unchanged` file |
+| `SPACESHIP_GIT_STATUS_SKIP_WORKTREE` | `↧` | Indicator for the presence of a `--skip-worktree` file |
 
 ### Mercurial (`hg`)
 

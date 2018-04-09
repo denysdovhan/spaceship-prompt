@@ -20,7 +20,7 @@ Currently it shows:
 
 * Clever hostname and username displaying.
 * Prompt character turns red if the last command exits with non-zero code.
-* Current Git branch and rich repo status:
+* Current Git branch, index, and rich repo status:
   * `?` — untracked changes;
   * `+` — uncommitted changes in the index;
   * `!` — unstaged changes;
@@ -30,12 +30,14 @@ Currently it shows:
   * `=` — unmerged changes;
   * `⇡` — ahead of remote branch;
   * `⇣` — behind of remote branch;
-  * `⇕` — diverged chages.
+  * `⇕` — diverged changes;
+  * `⤒` - at least one file is assumed unchanged;
+  * `↧` - at least one file is skipped in the worktree.
 * Current Mercurial bookmark/branch and rich repo status:
   * `?` — untracked changes;
   * `+` — uncommitted changes in the index;
   * `!` — unstaged changes;
-  * `✘` — deleted files;
+  * `✘` — deleted files.
 * Indicator for jobs in the background (`✦`).
 * Current Node.js version, through nvm/nodenv/n (`⬢`).
 * Current Ruby version, through rvm/rbenv/chruby/asdf (`💎`).
