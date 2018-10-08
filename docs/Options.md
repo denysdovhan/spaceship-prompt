@@ -16,38 +16,39 @@ The default order is:
 
 ```zsh
 SPACESHIP_PROMPT_ORDER=(
-  time          # Time stampts section
-  user          # Username section
-  dir           # Current directory section
-  host          # Hostname section
-  git           # Git section (git_branch + git_status)
-  hg            # Mercurial section (hg_branch  + hg_status)
-  package       # Package version
-  node          # Node.js section
-  ruby          # Ruby section
-  elixir        # Elixir section
-  xcode         # Xcode section
-  swift         # Swift section
-  golang        # Go section
-  php           # PHP section
-  rust          # Rust section
-  haskell       # Haskell Stack section
-  julia         # Julia section
-  docker        # Docker section
-  aws           # Amazon Web Services section
-  venv          # virtualenv section
-  conda         # conda virtualenv section
-  pyenv         # Pyenv section
-  dotnet        # .NET section
-  ember         # Ember.js section
-  kubecontext   # Kubectl context section
-  exec_time     # Execution time
-  line_sep      # Line break
-  battery       # Battery level and status
-  vi_mode       # Vi-mode indicator
-  jobs          # Background jobs indicator
-  exit_code     # Exit code section
-  char          # Prompt character
+  time                     # Time stampts section
+  user                     # Username section
+  dir                      # Current directory section
+  host                     # Hostname section
+  git                      # Git section (git_branch + git_status)
+  git_commit_time          # Display time since previous commit
+  hg                       # Mercurial section (hg_branch  + hg_status)
+  package                  # Package version
+  node                     # Node.js section
+  ruby                     # Ruby section
+  elixir                   # Elixir section
+  xcode                    # Xcode section
+  swift                    # Swift section
+  golang                   # Go section
+  php                      # PHP section
+  rust                     # Rust section
+  haskell                  # Haskell Stack section
+  julia                    # Julia section
+  docker                   # Docker section
+  aws                      # Amazon Web Services section
+  venv                     # virtualenv section
+  conda                    # conda virtualenv section
+  pyenv                    # Pyenv section
+  dotnet                   # .NET section
+  ember                    # Ember.js section
+  kubecontext              # Kubectl context section
+  exec_time                # Execution time
+  line_sep                 # Line break
+  battery                  # Battery level and status
+  vi_mode                  # Vi-mode indicator
+  jobs                     # Backgound jobs indicator
+  exit_code                # Exit code section
+  char                     # Prompt character
 )
 ```
 
@@ -182,6 +183,24 @@ Git status indicators is shown only when you have dirty repository.
 | `SPACESHIP_GIT_STATUS_AHEAD` | `⇡` | Indicator for unpushed changes (ahead of remote branch) |
 | `SPACESHIP_GIT_STATUS_BEHIND` | `⇣` | Indicator for unpulled changes (behind of remote branch) |
 | `SPACESHIP_GIT_STATUS_DIVERGED` | `⇕` | Indicator for diverged chages (diverged with remote branch) |
+
+### Git commit time (`git_commit_time`)
+
+Display the time since last commit. It is shown only in Git repositories.
+
+| Time | Color |
+| :--: | :---: |
+| greater than `SPACESHIP_GIT_COMMIT_TIME_THRESHOLD_HIGH` | `red` *(long)* |
+| between them | `yellow` *(medium)* |
+| lower than `SPACESHIP_GIT_COMMIT_TIME_THRESHOLD_LOW` | `green` *(short)* |
+
+| Variable | Default | Meaning |
+| :------- | :-----: | ------- |
+| `SPACESHIP_GIT_COMMIT_TIME_SHOW` | `false` | Show Git commit time subsection |
+| `SPACESHIP_GIT_COMMIT_TIME_PREFIX` | `since` | Prefix before Git commit time subsection |
+| `SPACESHIP_GIT_COMMIT_TIME_SUFFIX` | `$SPACESHIP_PROMPT_DEFAULT_SUFFIX` | Suffix after Git commit time subsection |
+| `SPACESHIP_GIT_COMMIT_TIME_THRESHOLD_LOW` | `30` | Threshold for "short commit time", in minutes |
+| `SPACESHIP_GIT_COMMIT_TIME_THRESHOLD_HIGH` | `240` (4h) | Threshold for "long commit time", in minutes |
 
 ### Mercurial (`hg`)
 

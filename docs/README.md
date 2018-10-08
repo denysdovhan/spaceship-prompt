@@ -12,6 +12,7 @@
   * [Git (git)](/docs/Options.md#git-git)
     * [Git branch (git_branch)](/docs/Options.md#git-branch-gitbranch)
     * [Git status (git_status)](/docs/Options.md#git-status-gitstatus)
+  * [Git commit time (git_commit_time)](/docs/Options.md#git-git-commit-time)
   * [Mercurial (hg)](/docs/Options.md#mercurial-hg)
     * [Mercurial branch (hg_branch)](/docs/Options.md#mercurial-branch-hg_branch)
     * [Mercurial status (hg_status)](/docs/Options.md#mercurial-status-hg_status)
@@ -56,4 +57,3 @@
   * [spaceship::displaytime](/docs/API.md#spaceshipdisplaytime-seconds)
   * [spaceship::union](/docs/API.md#spaceshipunion-arr1-arr2-)
 * [Troubleshooting](/docs/Troubleshooting.md)
-
