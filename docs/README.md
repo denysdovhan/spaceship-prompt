@@ -36,6 +36,7 @@
   * [Ember (ember)](/docs/Options.md#emberjs-ember)
   * [Kubectl context (kubecontext)](/docs/Options.md#kubectl-context-kubecontext)
   * [Terraform workspace (terraform)](/docs/Options.md#terraform-workspace-terraform)
+  * [Ocaml (ocaml)](/docs/Options.md#ocaml-ocaml)
   * [Execution time (exec_time)](/docs/Options.md#execution-time-exec_time)
   * [Battery (battery)](/docs/Options.md#battery-battery)
   * [Vi-mode (vi_mode)](/docs/Options.md#vi-mode-vi_mode)

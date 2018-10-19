@@ -73,6 +73,7 @@ SPACESHIP_PROMPT_ORDER=(
   # ember       # Ember.js section (Disabled)
   kubecontext   # Kubectl context section
   terraform     # Terraform workspace section
+  ocaml         # Ocaml section
   exec_time     # Execution time
   line_sep      # Line break
   battery       # Battery level and status
