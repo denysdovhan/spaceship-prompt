@@ -55,13 +55,13 @@ spaceship_battery() {
     battery_percent="$( echo "$battery_data" | grep percentage | awk '{print $2}' )"
     battery_status="$( echo "$battery_data" | grep state | awk '{print $2}' )"
   elif spaceship::exists acpi; then
-    battery_data=$(acpi -b)
+    battery_data=$(acpi -ib)
 
     # Return if no battery
     [[ -z $battery_data ]] && return
 
-    battery_percent="$( echo $battery_data | awk '{print $4}' )"
-    battery_status="$( echo $battery_data | awk '{print tolower($3)}' )"
+    battery_percent="$( echo $battery_data | awk '(NR % 2){ perc=$4/100 } !(NR % 2) { availmAh += perc * $10; totalmAh += $10 } END { printf "%.0f", (availmAh / totalmAh)*100 }' )"
+    battery_status="$( echo $battery_data | awk '(NR % 2){ print tolower($3) }' | tr -d '%[,;' | awk '{ s=$1 } (s=="charging") { status=s } (s=="discharging") { status=s } END { print status }' )"
   else
     return
   fi
