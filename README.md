@@ -207,7 +207,7 @@ makepkg -si
 If you have problems with approaches above, follow these instructions:
 
 * Clone this repo `git clone https://github.com/denysdovhan/spaceship-prompt.git`
-* Symlink `spaceship.zsh` to somewhere in [`$fpath`](http://www.refining-linux.org/archives/46/ZSH-Gem-12-Autoloading-functions/) as `prompt_spaceship_setup`.
+* Symlink `spaceship.zsh` to somewhere in [`$fpath`](https://www.refining-linux.org/archives/46-ZSH-Gem-12-Autoloading-functions.html) as `prompt_spaceship_setup`.
 * Initialize prompt system and choose `spaceship`.
 
 #### Example

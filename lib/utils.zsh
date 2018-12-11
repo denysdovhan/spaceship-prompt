@@ -38,6 +38,13 @@ spaceship::is_hg() {
   [[ -n "$root" ]] &>/dev/null
 }
 
+# Check if the current directory is in a Fossil repository.
+# USAGE:
+#   spaceship::is_fossil
+spaceship::is_fossil() {
+  command fossil ls &>/dev/null
+}
+
 # Print message backward compatibility warning
 # USAGE:
 #  spaceship::deprecated <deprecated> [message]
