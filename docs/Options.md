@@ -42,6 +42,7 @@ SPACESHIP_PROMPT_ORDER=(
   ember         # Ember.js section
   kubecontext   # Kubectl context section
   terraform     # Terraform workspace section
+  ocaml         # Ocaml section
   exec_time     # Execution time
   line_sep      # Line break
   battery       # Battery level and status
@@ -510,6 +511,18 @@ Shows the active Terraform wokspace in directories that contain `.terraform/envi
 | `SPACESHIP_TERRAFORM_SUFFIX` | `$SPACESHIP_PROMPT_DEFAULT_SUFFIX` | Suffix after Terraform workspace section |
 | `SPACESHIP_TERRAFORM_SYMBOL` | `🛠️·` | Character to be shown before Terraform workspace |
 | `SPACESHIP_TERRAFORM_COLOR` | `105` | Color of Terraform workspace section |
+
+### Ocaml (`ocaml`)
+
+Ocaml section is only shown in directories that contain `*opam`, `dune*`, `jbuilder*`, `.merlin`, or any file with `.ml` or `mli` extension.
+
+| Variable | Default | Meaning |
+| :------- | :-----: | ------- |
+| `SPACESHIP_OCAML_SHOW` | `true` | Show Ocaml section |
+| `SPACESHIP_OCAML_PREFIX` | `$SPACESHIP_PROMPT_DEFAULT_PREFIX` | Prefix before Ocaml section |
+| `SPACESHIP_OCAML_SUFFIX` | `$SPACESHIP_PROMPT_DEFAULT_SUFFIX` | Suffix after Ocaml section |
+| `SPACESHIP_OCAML_SYMBOL` | `🐫·` | Character to be shown before Ocaml version |
+| `SPACESHIP_OCAML_COLOR` | `yellow` | Color of Ocaml section |
 
 ### Execution time (`exec_time`)
 

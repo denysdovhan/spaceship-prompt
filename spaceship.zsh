@@ -68,6 +68,7 @@ if [ -z "$SPACESHIP_PROMPT_ORDER" ]; then
     kubecontext   # Kubectl context section
     terraform     # Terraform workspace section
     exec_time     # Execution time
+    ocaml         # Ocaml section
     line_sep      # Line break
     battery       # Battery level and status
     vi_mode       # Vi-mode indicator
