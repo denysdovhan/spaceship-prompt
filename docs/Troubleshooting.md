@@ -65,6 +65,7 @@ SPACESHIP_PROMPT_ORDER=(
   haskell       # Haskell Stack section
   # julia       # Julia section (Disabled)
   # docker      # Docker section (Disabled)
+  ansible       # Ansible section
   aws           # Amazon Web Services section
   venv          # virtualenv section
   conda         # conda virtualenv section

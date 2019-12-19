@@ -95,6 +95,7 @@ Spaceship is a minimalistic, powerful and extremely customizable [Zsh][zsh-url] 
 - Current version of Haskell GHC Compiler, defined in stack.yaml file (`λ`).
 - Current Julia version (`ஃ`).
 - Current Docker version and connected machine (`🐳`).
+- Current Ansible version (`🅐`).
 - Current Amazon Web Services (AWS) profile (`☁️`) ([Using named profiles](http://docs.aws.amazon.com/cli/latest/userguide/cli-multiple-profiles.html)).
 - Current Python virtualenv.
 - Current Conda virtualenv (`🅒`).

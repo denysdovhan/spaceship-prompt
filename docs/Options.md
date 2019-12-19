@@ -34,6 +34,7 @@ SPACESHIP_PROMPT_ORDER=(
   haskell       # Haskell Stack section
   julia         # Julia section
   docker        # Docker section
+  ansible       # Ansible section
   aws           # Amazon Web Services section
   venv          # virtualenv section
   conda         # conda virtualenv section
@@ -404,6 +405,19 @@ The environment variable `COMPOSE_PATH_SEPARATOR` is supported too. For more inf
 | `SPACESHIP_DOCKER_SYMBOL` | `🐳·` | Character to be shown before Docker version |
 | `SPACESHIP_DOCKER_COLOR` | `cyan` | Color of Docker section |
 | `SPACESHIP_DOCKER_VERBOSE` | `false` | Show complete Docker version |
+
+### Ansible (`ansible`)
+
+Ansible section is shown only in directories that contain valid ansible playbooks or `[.]ansible.cfg` files. Please be aware that switching on the option to display the ansible version causes some delay.
+
+| Variable | Default | Meaning |
+| :------- | :-----: | ------- |
+| `SPACESHIP_ANSIBLE_SHOW` | `true` | Show Ansible section |
+| `SPACESHIP_ANSIBLE_SHOW_VERSION` | `false` | Show current Ansible version |
+| `SPACESHIP_ANSIBLE_PREFIX` | `$SPACESHIP_PROMPT_DEFAULT_PREFIX` | Prefix before the Ansible section |
+| `SPACESHIP_ANSIBLE_SUFFIX` | `$SPACESHIP_PROMPT_DEFAULT_SUFFIX` | Suffix after the Ansible section |
+| `SPACESHIP_ANSIBLE_SYMBOL` | `🅐·` | Character to be shown before Ansible version |
+| `SPACESHIP_ANSIBLE_COLOR` | `white` | Color of Ansible section |
 
 ### Amazon Web Services (AWS) (`aws`)
 

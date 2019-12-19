@@ -28,6 +28,7 @@
   * [Haskell (haskell)](/docs/Options.md#haskell-haskell)
   * [Julia (julia)](/docs/Options.md#julia-julia)
   * [Docker (docker)](/docs/Options.md#docker-docker)
+  * [Ansible (ansible)](/docs/Options.md#ansible-ansible)
   * [Amazon Web Services (aws)](/docs/Options.md#amazon-web-services-aws-aws)
   * [Virtualenv (venv)](/docs/Options.md#virtualenv-venv)
   * [Conda Virtualenv (conda)](/docs/Options.md#conda-virtualenv-conda)
