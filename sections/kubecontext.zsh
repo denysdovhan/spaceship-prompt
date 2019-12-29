@@ -18,10 +18,53 @@ SPACESHIP_KUBECONTEXT_SYMBOL="${SPACESHIP_KUBECONTEXT_SYMBOL="☸️  "}"
 SPACESHIP_KUBECONTEXT_COLOR="${SPACESHIP_KUBECONTEXT_COLOR="cyan"}"
 SPACESHIP_KUBECONTEXT_NAMESPACE_SHOW="${SPACESHIP_KUBECONTEXT_NAMESPACE_SHOW=true}"
 SPACESHIP_KUBECONTEXT_COLOR_GROUPS=(${SPACESHIP_KUBECONTEXT_COLOR_GROUPS=})
+SPACESHIP_KUBECONTEXT_CACHE_DIR="${SPACESHIP_KUBECONTEXT_CACHE_DIR:-"${XDG_CACHE_HOME:-$HOME/.cache}/spaceship-prompt"}"
+SPACESHIP_KUBECONTEXT_CACHE_FILE="${SPACESHIP_KUBECONTEXT_CACHE_DIR}/kubecontext-cache"
 
 # ------------------------------------------------------------------------------
 # Section
 # ------------------------------------------------------------------------------
+kubecontext_file_newer_than() {
+    local left_mtime
+    local right_mtime
+    local left=$1
+    local right=$2
+
+    if stat -c "%s" /dev/null &>/dev/null; then
+        # GNU stat
+        left_mtime=$(stat -L -c %Y ${left})
+        right_mtime=$(stat -L -c %Y ${right})
+    else
+        left_mtime=$(stat -L -f %m ${left})
+        right_mtime=$(stat -L -f %m ${right})
+    fi
+
+    [[ ${left_mtime} -gt ${right_mtime} ]]
+
+}
+kubecontext_cache() {
+    [[ -d ${SPACESHIP_KUBECONTEXT_CACHE_DIR} ]] || mkdir -p ${SPACESHIP_KUBECONTEXT_CACHE_DIR}
+    [[ -r ${SPACESHIP_KUBECONTEXT_CACHE_FILE} ]] || TZ=UTC touch -t '197001010000' ${SPACESHIP_KUBECONTEXT_CACHE_FILE}
+    for conf in  $(echo ${KUBECONFIG:-$HOME/.kube/config} | tr ':' ' '); do
+        [[ -r ${conf} ]] || continue
+        if kubecontext_file_newer_than ${conf} ${SPACESHIP_KUBECONTEXT_CACHE_FILE}; then
+            echo "$(query_kubecontext)" > ${SPACESHIP_KUBECONTEXT_CACHE_FILE}
+            break
+        fi
+    done
+    cat $SPACESHIP_KUBECONTEXT_CACHE_FILE
+}
+
+query_kubecontext() {
+  kubectl config view --minify \
+    --output=jsonpath='{range .contexts[*]}{.name} {.context.namespace}{end}' 2>/dev/null
+}
+get_kubecontext_only() {
+  kubecontext_cache | awk '{print $1}'
+}
+get_kubecontext_with_namespace() {
+    kubecontext_cache | awk '/.*default$/{print $1;exit} !$2{print $1;exit} {printf $1 " (" $2 ")"}'
+}
 
 # Show current context in kubectl
 spaceship_kubecontext() {
@@ -29,13 +72,13 @@ spaceship_kubecontext() {
 
   spaceship::exists kubectl || return
 
-  local kube_context=$(kubectl config current-context 2>/dev/null)
-  [[ -z $kube_context ]] && return
 
   if [[ $SPACESHIP_KUBECONTEXT_NAMESPACE_SHOW == true ]]; then
-    local kube_namespace=$(kubectl config view --minify --output 'jsonpath={..namespace}' 2>/dev/null)
-    [[ -n $kube_namespace && "$kube_namespace" != "default" ]] && kube_context="$kube_context ($kube_namespace)"
+    kube_context=$(get_kubecontext_with_namespace)
+  else
+    kube_context=$(get_kubecontext_only)
   fi
+  [[ -z "$kube_context" ]] && return
 
   # Apply custom color to section if $kube_context matches a pattern defined in SPACESHIP_KUBECONTEXT_COLOR_GROUPS array.
   # See Options.md for usage example.
