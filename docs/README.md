@@ -35,6 +35,7 @@
   * [.NET (dotnet)](/docs/Options.md#net-dotnet)
   * [Ember (ember)](/docs/Options.md#emberjs-ember)
   * [Kubectl context (kubecontext)](/docs/Options.md#kubectl-context-kubecontext)
+  * [Dropbox status (dropbox)](/docs/Options.md#dropbox-status-dropbox)
   * [Terraform workspace (terraform)](/docs/Options.md#terraform-workspace-terraform)
   * [Execution time (exec_time)](/docs/Options.md#execution-time-exec_time)
   * [Battery (battery)](/docs/Options.md#battery-battery)
@@ -58,4 +59,3 @@
   * [spaceship::displaytime](/docs/API.md#spaceshipdisplaytime-seconds)
   * [spaceship::union](/docs/API.md#spaceshipunion-arr1-arr2-)
 * [Troubleshooting](/docs/Troubleshooting.md)
-
