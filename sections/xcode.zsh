@@ -25,10 +25,10 @@ spaceship_xcode() {
 
   local 'xcode_path'
 
-  if [[ $SPACESHIP_SWIFT_SHOW_GLOBAL == true ]] ; then
+  if [[ $SPACESHIP_XCODE_SHOW_GLOBAL == true ]] ; then
     xcode_path=$(xcenv version | sed 's/ .*//')
-  elif [[ $SPACESHIP_SWIFT_SHOW_LOCAL == true ]] ; then
-    if xcenv version | grep ".xcode-version" > /dev/null; then
+  elif [[ $SPACESHIP_XCODE_SHOW_LOCAL == true ]] ; then
+    if [[ `xcenv local 2>/dev/null` ]] ; then
       xcode_path=$(xcenv version | sed 's/ .*//')
     fi
   fi
