@@ -96,6 +96,7 @@ Spaceship is a minimalistic, powerful and extremely customizable [Zsh][zsh-url] 
 - Current Julia version (`ஃ`).
 - Current Docker version and connected machine (`🐳`).
 - Current Amazon Web Services (AWS) profile (`☁️`) ([Using named profiles](http://docs.aws.amazon.com/cli/latest/userguide/cli-multiple-profiles.html)).
+* Current Microsoft Azure default subscription and resource group (`☁️`).
 - Current Python virtualenv.
 - Current Conda virtualenv (`🅒`).
 - Current Python pyenv (`🐍`).

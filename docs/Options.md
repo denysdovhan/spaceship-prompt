@@ -35,6 +35,7 @@ SPACESHIP_PROMPT_ORDER=(
   julia         # Julia section
   docker        # Docker section
   aws           # Amazon Web Services section
+  az            # Microsoft Azure section
   venv          # virtualenv section
   conda         # conda virtualenv section
   pyenv         # Pyenv section
@@ -424,6 +425,18 @@ Shows selected Amazon Web Services profile configured using  [`AWS_PROFILE`](htt
 | `SPACESHIP_AWS_SUFFIX` | `$SPACESHIP_PROMPT_DEFAULT_SUFFIX` | Suffix after the AWS section |
 | `SPACESHIP_AWS_SYMBOL` | `☁️·` | Character to be shown before AWS profile |
 | `SPACESHIP_AWS_COLOR` | `208` | Color of AWS section |
+
+### Microsoft Azure (`az`)
+
+Shows default subscription and resource group, set via `az account set --subscription=...` and `az configure --defaults group=...`.
+
+| Variable | Default | Meaning |
+| :------- | :-----: | ------- |
+| `SPACESHIP_AZ_SHOW` | `true` | Show current selected default subscription and resource group or not |
+| `SPACESHIP_AZ_PREFIX` | `using·` | Prefix before the AZ section |
+| `SPACESHIP_AZ_SUFFIX` | `$SPACESHIP_PROMPT_DEFAULT_SUFFIX` | Suffix after the AZ section |
+| `SPACESHIP_AZ_SYMBOL` | `☁️·` | Character to be shown before AZ profile |
+| `SPACESHIP_AZ_COLOR` | `blue` | Color of AZ section |
 
 ### Virtualenv (`venv`)
 

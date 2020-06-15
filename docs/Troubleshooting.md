@@ -66,6 +66,7 @@ SPACESHIP_PROMPT_ORDER=(
   # julia       # Julia section (Disabled)
   # docker      # Docker section (Disabled)
   aws           # Amazon Web Services section
+  az            # Microsoft Azure section
   venv          # virtualenv section
   conda         # conda virtualenv section
   pyenv         # Pyenv section

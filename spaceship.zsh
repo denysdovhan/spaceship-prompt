@@ -60,6 +60,7 @@ if [ -z "$SPACESHIP_PROMPT_ORDER" ]; then
     julia         # Julia section
     docker        # Docker section
     aws           # Amazon Web Services section
+    az            # Microsoft Azure section
     venv          # virtualenv section
     conda         # conda virtualenv section
     pyenv         # Pyenv section
