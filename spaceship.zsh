@@ -38,6 +38,10 @@ fi
 # The default configuration that can be overridden in .zshrc
 # ------------------------------------------------------------------------------
 
+# Config directory. Spaceship will check here for section definitions,
+# in sections/<section name>.zsh with entry point `spaceship_<section name>()`
+SPACESHIP_CONFIG_DIR="${SPACESHIP_CONFIG_DIR="${HOME}/.config/spaceship"}"
+
 if [ -z "$SPACESHIP_PROMPT_ORDER" ]; then
   SPACESHIP_PROMPT_ORDER=(
     time          # Time stampts section
@@ -113,7 +117,9 @@ source "$SPACESHIP_ROOT/lib/section.zsh"
 # ------------------------------------------------------------------------------
 
 for section in $(spaceship::union $SPACESHIP_PROMPT_ORDER $SPACESHIP_RPROMPT_ORDER); do
-  if [[ -f "$SPACESHIP_ROOT/sections/$section.zsh" ]]; then
+  if [[ -f "$SPACESHIP_CONFIG_DIR/sections/$section.zsh" ]]; then
+    source "$SPACESHIP_CONFIG_DIR/sections/$section.zsh"
+  elif [[ -f "$SPACESHIP_ROOT/sections/$section.zsh" ]]; then
     source "$SPACESHIP_ROOT/sections/$section.zsh"
   elif spaceship::defined "spaceship_$section"; then
     # Custom section is declared, nothing else to do
