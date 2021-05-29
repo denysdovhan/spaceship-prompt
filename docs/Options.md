@@ -260,6 +260,18 @@ If you set `SPACESHIP_NODE_DEFAULT_VERSION` to the default Node.js version and y
 | `SPACESHIP_NODE_DEFAULT_VERSION` | ` ` | Node.js version to be treated as default |
 | `SPACESHIP_NODE_COLOR` | `green` | Color of Node.js section |
 
+### OCaml (`ocaml`)
+
+OCaml section is shown only in directories that contain `*.opam` file or `_opam` directory; `esy.lock` directory; `dune*`, `jbuild*` or `.merlin` file or any other file with `.ml`, `.mli`, `.re` or `.rei` extension.
+
+| Variable | Default | Meaning |
+| :------- | :-----: | ------- |
+| `SPACESHIP_OCAML_SHOW` | `true` | Current OCaml section |
+| `SPACESHIP_OCAML_PREFIX` | `$SPACESHIP_PROMPT_DEFAULT_PREFIX` | Prefix before OCaml section |
+| `SPACESHIP_OCAML_SUFFIX` | `$SPACESHIP_PROMPT_DEFAULT_SUFFIX` | Suffix after OCaml section |
+| `SPACESHIP_OCAML_SYMBOL` | `🐫·` | Character to be shown before OCaml version |
+| `SPACESHIP_OCAML_COLOR` | `yellow` | Color of OCaml section |
+
 ### Ruby (`ruby`)
 
 Ruby section is shown only in directories that contain `Gemfile`, or `Rakefile`, or any other file with `.rb` extension.

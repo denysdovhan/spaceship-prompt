@@ -84,6 +84,7 @@ Spaceship is a minimalistic, powerful and extremely customizable [Zsh][zsh-url] 
   - `✘` — deleted files;
 - Indicator for jobs in the background (`✦`).
 - Current Node.js version, through nvm/nodenv/n (`⬢`).
+- Current OCaml version, through esy (`🐫`).
 - Current Ruby version, through rvm/rbenv/chruby/asdf (`💎`).
 - Current Elm version (`🌳`)
 - Current Elixir version, through kiex/exenv/elixir (`💧`).

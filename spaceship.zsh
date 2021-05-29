@@ -50,6 +50,7 @@ if [ -z "$SPACESHIP_PROMPT_ORDER" ]; then
     maven         # Maven section
     package       # Package version
     node          # Node.js section
+    ocaml         # OCaml section
     ruby          # Ruby section
     elm           # Elm section
     elixir        # Elixir section
