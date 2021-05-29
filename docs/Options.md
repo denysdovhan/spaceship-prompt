@@ -20,6 +20,7 @@ SPACESHIP_PROMPT_ORDER=(
   user          # Username section
   dir           # Current directory section
   host          # Hostname section
+  nix_shell     # Nix-shell package/environment information
   git           # Git section (git_branch + git_status)
   hg            # Mercurial section (hg_branch  + hg_status)
   package       # Package version
@@ -147,6 +148,19 @@ If current directory is write-protected or if current user has not enough rights
 | `SPACESHIP_DIR_COLOR` | `cyan` | Color of directory section |
 | `SPACESHIP_DIR_LOCK_SYMBOL` | ![·](https://user-images.githubusercontent.com/10276208/46248218-4af95d80-c434-11e8-8e25-595d792503f1.png) | The symbol displayed if directory is write-protected (requires powerline patched font) |
 | `SPACESHIP_DIR_LOCK_COLOR` | `red` | Color for the lock symbol |
+
+### Nix_shell (`nix_shell`)
+
+Shows the name of the current nix environment for easy distinction. If you initialized a nix-shell with the `-p` option it will show the packages that were passed during initialization.
+
+| Variable | Default | Meaning |
+| :------- | :-----: | ------- |
+| `SPACESHIP_NIX_SHELL_SHOW` | true | Show nix_shell section |
+| `SPACESHIP_NIX_SHELL_PACKAGE_PREFIX` | "with " | Prefix before packages in nix-shell if initialized with `-p` |
+| `SPACESHIP_NIX_SHELL_NAMED_PREFIX` | "in " | Prefix before name of nix-shell if initialized with stdenv |
+| `SPACESHIP_NIX_SHELL_SUFFIX` | `$SPACESHIP_PROMPT_DEFAULT_SUFFIX` | Suffix after nix_shell section |
+| `SPACESHIP_NIX_SHELL_SYMBOL` | "" | Character to be shown before name/packages |
+| `SPACESHIP_NIX_SHELL_COLOR` | green | Font color of section |
 
 ### Git (`git`)
 
