@@ -66,6 +66,7 @@ if [ -z "$SPACESHIP_PROMPT_ORDER" ]; then
     venv          # virtualenv section
     conda         # conda virtualenv section
     pyenv         # Pyenv section
+    jenv          # jEnv section
     dotnet        # .NET section
     ember         # Ember.js section
     kubectl       # Kubectl context section

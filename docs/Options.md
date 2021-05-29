@@ -41,6 +41,7 @@ SPACESHIP_PROMPT_ORDER=(
   venv          # virtualenv section
   conda         # conda virtualenv section
   pyenv         # Pyenv section
+  jenv          # jEnv section  
   dotnet        # .NET section
   ember         # Ember.js section
   kubectl       # Kubectl context section
@@ -475,6 +476,18 @@ pyenv section is shown only in directories that contain `requirements.txt`, `pyp
 | `SPACESHIP_PYENV_SUFFIX` | `$SPACESHIP_PROMPT_DEFAULT_SUFFIX` | Suffix after the pyenv section |
 | `SPACESHIP_PYENV_SYMBOL` | `🐍·` | Character to be shown before Pyenv version |
 | `SPACESHIP_PYENV_COLOR` | `yellow` | Color of Pyenv section |
+
+### jEnv (`jenv`)
+
+jenv section is shown only if jenv is installed in the system. It consists in the name of the JVM only (e.g. `system` or `adoptopenjdk-11`, etc)
+
+| Variable | Default | Meaning |
+| :------- | :-----: | ------- |
+| `SPACESHIP_JENV_SHOW` | `true` | Enable jEnv section |
+| `SPACESHIP_JENV_PREFIX` | `$SPACESHIP_PROMPT_DEFAULT_PREFIX` | Prefix before the jEnv section |
+| `SPACESHIP_JENV_SUFFIX` | `$SPACESHIP_PROMPT_DEFAULT_SUFFIX` | Suffix after the jEnv section |
+| `SPACESHIP_JENV_SYMBOL` | `☕·` | Character to be shown before the jEnv version |
+| `SPACESHIP_JENV_COLOR` | `black` | Color of the jEnv section |
 
 ### .NET (`dotnet`)
 
