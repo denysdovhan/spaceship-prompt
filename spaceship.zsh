@@ -35,8 +35,28 @@ fi
 
 # ------------------------------------------------------------------------------
 # CONFIGURATION
-# The default configuration that can be overridden in .zshrc
+# The default configuration that can be overridden in .zshrc or in local
+# configuration file
 # ------------------------------------------------------------------------------
+
+# Load local rc file if available, home dir first then basedir-spec $XDG_CONFIG_HOME
+local configfile
+if [[ -f "$HOME/.spaceship-promptrc" ]]; then
+  configfile="$HOME/.spaceship-promptrc"
+else
+  local dir
+  local dirs="${XDG_CONFIG_HOME:-"$HOME/.config"}:${XDG_CONFIG_DIRS:-/etc/xdg}"
+  dirs=("${(@s/:/)dirs}")
+  for dir in $dirs; do
+    if [[ -f "$dir/spaceship-prompt/config" ]]; then
+      configfile="$dir/spaceship-prompt/config"
+      break
+    fi
+  done
+fi
+if [[ -n "$configfile" ]]; then
+    source "$configfile"
+fi
 
 if [ -z "$SPACESHIP_PROMPT_ORDER" ]; then
   SPACESHIP_PROMPT_ORDER=(

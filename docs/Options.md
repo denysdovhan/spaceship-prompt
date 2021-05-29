@@ -1,6 +1,9 @@
 ## Options
 
-You have ability to customize or disable specific elements of Spaceship. All options must be overridden in your `.zshrc` file **after** the theme.
+You have ability to customize or disable specific elements of Spaceship. All options could be overridden in your `.zshrc` file (must be **after** the theme) or you could use an external configuration file. Spaceship-prompt will look for the following files in said order:
+- `$HOME/.spaceship-promptrc`
+- `$XDG_CONFIG_HOME/spaceship-prompt/config`, if $XDG_CONFIG_HOME is not set then defaults to $HOME/.config
+- `$XDG_CONFIG_DIRS/spaceship-prompt/config`
 
 Colors for sections can be [basic colors](https://wiki.archlinux.org/index.php/zsh#Colors) or [color codes](https://upload.wikimedia.org/wikipedia/commons/1/15/Xterm_256color_chart.svg).
 
@@ -86,7 +89,7 @@ This group of options defines a behaviour of prompt and standard parameters for 
 
 ### Time (`time`)
 
-Disabled by default. Set `SPACESHIP_TIME_SHOW` to `true` in your `.zshrc`, if you need to show time stamps.
+Disabled by default. Set `SPACESHIP_TIME_SHOW` to `true` in your `.zshrc` or configuration file, if you need to show time stamps.
 
 | Variable | Default | Meaning |
 | :------- | :-----: | ------- |
@@ -679,7 +682,7 @@ This section show only when there are active jobs in the background.
 
 ### Exit code (`exit_code`)
 
-Disabled by default. Set `SPACESHIP_EXIT_CODE_SHOW` to `true` in your `.zshrc`, if you need to show exit code of last command.
+Disabled by default. Set `SPACESHIP_EXIT_CODE_SHOW` to `true` in your `.zshrc` or configuration file, if you need to show exit code of last command.
 
 | Variable | Default | Meaning |
 | :------- | :-----: | ------- |
