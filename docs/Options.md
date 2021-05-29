@@ -26,6 +26,7 @@ SPACESHIP_PROMPT_ORDER=(
   gradle        # Gradle section
   maven         # Maven section
   node          # Node.js section
+  moodle        # Moodle version
   ruby          # Ruby section
   elixir        # Elixir section
   xcode         # Xcode section
@@ -259,6 +260,18 @@ If you set `SPACESHIP_NODE_DEFAULT_VERSION` to the default Node.js version and y
 | `SPACESHIP_NODE_SYMBOL` | `⬢·` | Character to be shown before Node.js version |
 | `SPACESHIP_NODE_DEFAULT_VERSION` | ` ` | Node.js version to be treated as default |
 | `SPACESHIP_NODE_COLOR` | `green` | Color of Node.js section |
+
+### Moodle (`moodle`)
+
+Moodle section is shown only in directories that contain `version.php` file with the MOODLE_INTERNAL check.
+
+| Variable | Default | Meaning |
+| :------- | :-----: | ------- |
+| `SPACESHIP_MOODLE_SHOW` | `true` | Show Moodle section |
+| `SPACESHIP_MOODLE_PREFIX` | `$SPACESHIP_PROMPT_DEFAULT_PREFIX` | Prefix before Moodle section |
+| `SPACESHIP_MOODLE_SUFFIX` | `$SPACESHIP_PROMPT_DEFAULT_SUFFIX` | Suffix after Moodle section |
+| `SPACESHIP_MOODLE_SYMBOL` | `🎓·` | Character to be shown before Moodle version |
+| `SPACESHIP_MOODLE_COLOR` | `blue` | Color of Moodle section |
 
 ### Ruby (`ruby`)
 
