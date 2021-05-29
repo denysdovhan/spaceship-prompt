@@ -36,6 +36,7 @@ SPACESHIP_PROMPT_ORDER=(
   haskell       # Haskell Stack section
   julia         # Julia section
   docker        # Docker section
+  azure         # Azure Context section
   aws           # Amazon Web Services section
   gcloud        # Google Cloud Platform section
   venv          # virtualenv section
@@ -427,6 +428,18 @@ Shows selected Amazon Web Services profile configured using  [`AWS_PROFILE`](htt
 | `SPACESHIP_AWS_SUFFIX` | `$SPACESHIP_PROMPT_DEFAULT_SUFFIX` | Suffix after the AWS section |
 | `SPACESHIP_AWS_SYMBOL` | `☁️·` | Character to be shown before AWS profile |
 | `SPACESHIP_AWS_COLOR` | `208` | Color of AWS section |
+
+### Azure (AZURE) (`azure`)
+
+Shows selected Azure Context configured using ~/.azure/accessTokens.json file.
+
+| Variable | Default | Meaning |
+| :------- | :-----: | ------- |
+| `SPACESHIP_AZURE_SHOW` | `true` | Show current selected Azure CLI context or not |
+| `SPACESHIP_AZURE_PREFIX` | `az·` | Prefix before the Azure section |
+| `SPACESHIP_AZURE_SUFFIX` | `$SPACESHIP_PROMPT_DEFAULT_SUFFIX` | Suffix after the Azure section |
+| `SPACESHIP_AZURE_SYMBOL` | `☁️·` | Character to be shown before Azure Context |
+| `SPACESHIP_AZURE_COLOR` | `blue` | Color of Azure section |
 
 ### Google Cloud Platform (`gcloud`)
 
