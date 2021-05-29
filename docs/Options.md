@@ -78,6 +78,8 @@ This group of options defines a behaviour of prompt and standard parameters for 
 | `SPACESHIP_CHAR_PREFIX` | ` ` | Prefix before prompt character |
 | `SPACESHIP_CHAR_SUFFIX` | ` ` | Suffix after prompt character |
 | `SPACESHIP_CHAR_SYMBOL` | `➜ ` | Prompt character to be shown before any command |
+| `SPACESHIP_CHAR_SYMBOL_SUCCESS` | `$SPACESHIP_CHAR_SYMBOL` | Prompt character to be shown after successful command |
+| `SPACESHIP_CHAR_SYMBOL_FAILURE` | `$SPACESHIP_CHAR_SYMBOL` | Prompt character to be shown after failed command |
 | `SPACESHIP_CHAR_SYMBOL_ROOT` | `$SPACESHIP_CHAR_SYMBOL` | Prompt character to be shown before any command for the root user |
 | `SPACESHIP_CHAR_SYMBOL_SECONDARY` | `$SPACESHIP_CHAR_SYMBOL` | Secondary prompt character to be shown for incomplete commands |
 | `SPACESHIP_CHAR_COLOR_SUCCESS` | `green` | Color of prompt character if last command completes successfully |

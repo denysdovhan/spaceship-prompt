@@ -22,6 +22,8 @@ setUp() {
   SPACESHIP_CHAR_PREFIX=""
   SPACESHIP_CHAR_SUFFIX=""
   SPACESHIP_CHAR_SYMBOL="➜ "
+  SPACESHIP_CHAR_SYMBOL_SUCCESS="${SPACESHIP_CHAR_SYMBOL}"
+  SPACESHIP_CHAR_SYMBOL_FAILURE="${SPACESHIP_CHAR_SYMBOL}"
   SPACESHIP_CHAR_COLOR_SUCCESS="green"
   SPACESHIP_CHAR_COLOR_FAILURE="red"
   SPACESHIP_CHAR_COLOR_SECONDARY="yellow"
@@ -48,7 +50,8 @@ tearDown() {
 
 test_char() {
   SPACESHIP_CHAR_COLOR_SUCCESS=blue
-  local expected="%{%B%}%{%b%}%{%B%F{$SPACESHIP_CHAR_COLOR_SUCCESS}%}➜ %{%b%f%}%{%B%}%{%b%}"
+  SPACESHIP_CHAR_SYMBOL_SUCCESS="S "
+  local expected="%{%B%}%{%b%}%{%B%F{$SPACESHIP_CHAR_COLOR_SUCCESS}%}$SPACESHIP_CHAR_SYMBOL_SUCCESS%{%b%f%}%{%B%}%{%b%}"
   local actual="$(spaceship_prompt)"
 
   assertEquals "render char" "$expected" "$actual"
@@ -56,20 +59,12 @@ test_char() {
 
 test_char_failure() {
   SPACESHIP_CHAR_COLOR_FAILURE=yellow
-  local expected="%{%B%}%{%b%}%{%B%F{$SPACESHIP_CHAR_COLOR_FAILURE}%}➜ %{%b%f%}%{%B%}%{%b%}"
+  SPACESHIP_CHAR_SYMBOL_FAILURE="F "
+  local expected="%{%B%}%{%b%}%{%B%F{$SPACESHIP_CHAR_COLOR_FAILURE}%}$SPACESHIP_CHAR_SYMBOL_FAILURE%{%b%f%}%{%B%}%{%b%}"
   command false # this command should exit with non-zero code
   local actual="$(spaceship_prompt)"
 
   assertEquals "render char with failure" "$expected" "$actual"
-}
-
-test_char_symbol() {
-  SPACESHIP_CHAR_SYMBOL='-> '
-
-  local expected="%{%B%}%{%b%}%{%B%F{green}%}$SPACESHIP_CHAR_SYMBOL%{%b%f%}%{%B%}%{%b%}"
-  local actual="$(spaceship_prompt)"
-
-  assertEquals "render char with custom symbol" "$expected" "$actual"
 }
 
 test_char_prefix() {
