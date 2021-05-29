@@ -17,6 +17,7 @@ The default order is:
 ```zsh
 SPACESHIP_PROMPT_ORDER=(
   time          # Time stamps section
+  task          # TaskWarrior section
   user          # Username section
   dir           # Current directory section
   host          # Hostname section
@@ -688,6 +689,18 @@ Disabled by default. Set `SPACESHIP_EXIT_CODE_SHOW` to `true` in your `.zshrc`, 
 | `SPACESHIP_EXIT_CODE_SUFFIX` | ` ` | Suffix after exit code section |
 | `SPACESHIP_EXIT_CODE_SYMBOL` | `✘` | Character to be shown before exit code |
 | `SPACESHIP_EXIT_CODE_COLOR` | `red` | Color of exit code section |
+
+### TaskWarrior (`task`)
+
+If the task command exists, the latest line of the `task ready` output will be
+added to the prompt.
+
+| Variable | Default | Meaning |
+| :------- | :-----: | ------- |
+| `SPACESHIP_TASK_SHOW` | `true` | Show number of tasks ready |
+| `SPACESHIP_TASK_SYMBOL` | `☑` | Character to be shown before task ready count |
+| `SPACESHIP_TASK_COLOR` | `magenta` | Color of TaskWarrior section |
+
 
 ## Need more?
 

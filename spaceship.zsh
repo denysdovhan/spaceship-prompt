@@ -41,6 +41,7 @@ fi
 if [ -z "$SPACESHIP_PROMPT_ORDER" ]; then
   SPACESHIP_PROMPT_ORDER=(
     time          # Time stampts section
+    task          # TaskWarrior section
     user          # Username section
     dir           # Current directory section
     host          # Hostname section

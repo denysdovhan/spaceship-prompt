@@ -113,6 +113,7 @@ Spaceship is a minimalistic, powerful and extremely customizable [Zsh][zsh-url] 
 - Optional exit-code of last command ([how to enable](./docs/Options.md#exit-code-exit_code)).
 - Optional time stamps 12/24hr in format ([how to enable](./docs/Options.md#time-time)).
 - Execution time of the last command if it exceeds the set threshold.
+- Number of tasks ready ([TaskWarrior](https://taskwarrior.org/docs/))
 
 Want more features? Please, [open an issue](https://github.com/denysdovhan/spaceship-prompt/issues/new/choose) or send pull request.
 

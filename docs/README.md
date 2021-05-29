@@ -44,6 +44,7 @@
   * [Vi-mode (vi_mode)](/docs/Options.md#vi-mode-vi_mode)
   * [Background Jobs (jobs)](/docs/Options.md#jobs-jobs)
   * [Exit code (exit_code)](/docs/Options.md#exit-code-exit_code)
+  * [TaskWarrior (task)](/docs/Options.md#taskwarrior-task)
 * [Contributing Guide](/CONTRIBUTING.md)
   * [Philosophy](/CONTRIBUTING.md#philosophy)
   * [Setup](/CONTRIBUTING.md#setup)
