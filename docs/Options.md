@@ -228,12 +228,13 @@ Mercurial status indicators is shown only when you have dirty repository.
 
 ### Package version (`package`)
 
-> Works for [npm](https://www.npmjs.com/) and [cargo](https://crates.io/) at the moment. Please, help us improve this section!
+> Works for [npm](https://www.npmjs.com/), [cargo](https://crates.io/) and [python](https://www.python.org/) at the moment. Please, help us improve this section!
 
 Package version is shown when repository is a package.
 
 * **npm** — `npm` package contains a `package.json` file. We use `jq`, `python` to parse package version for improving performance and `node` as a fallback. Install [jq](https://stedolan.github.io/jq/) for **improved performance** of this section ([Why?](./Troubleshooting.md#why-is-my-prompt-slow))
 * **cargo** — `cargo` package contains a `Cargo.toml` file. Currently, we use `cargo pkgid`, it depends on `Cargo.lock`. So if package version isn't shown, you may need to run some command like `cargo build` which can generate `Cargo.lock` file.
+* **python** — `python` package contains a `setup.py` or `pyproject.toml` file (either in current dir, or git repo root). Currently, we use [pkg_resources](https://setuptools.readthedocs.io/en/latest/pkg_resources.html) to figure out the package version by package name. The package name is defined using either the [basename](https://docs.python.org/2/library/os.path.html#os.path.basename) of the git repository root directory (in case the current directory is inside a git repo) or the [basename](https://docs.python.org/2/library/os.path.html#os.path.basename) of the current directory.
 
 > **Note:** This is the version of the package you are working on, not the version of package manager itself.
 
