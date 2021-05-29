@@ -260,6 +260,22 @@ If you set `SPACESHIP_NODE_DEFAULT_VERSION` to the default Node.js version and y
 | `SPACESHIP_NODE_DEFAULT_VERSION` | ` ` | Node.js version to be treated as default |
 | `SPACESHIP_NODE_COLOR` | `green` | Color of Node.js section |
 
+### Deno (`deno`)
+
+Deno section is shown only in directories that contain either `mod.ts`, `dep.ts`,
+`main.ts` or `cli.ts` file.
+
+If you set `SPACESHIP_DENO_DEFAULT_VERSION` to the default Deno version and your current version is the same as `SPACESHIP_DENO_DEFAULT_VERSION`, then Node.js section will be hidden.
+
+| Variable | Default | Meaning |
+| :------- | :-----: | ------- |
+| `SPACESHIP_DENO_SHOW` | `true` | Current Deno section |
+| `SPACESHIP_DENO_PREFIX` | `$SPACESHIP_PROMPT_DEFAULT_PREFIX` | Prefix before Deno section |
+| `SPACESHIP_DENO_SUFFIX` | `$SPACESHIP_PROMPT_DEFAULT_SUFFIX` | Suffix after Deno section |
+| `SPACESHIP_DENO_SYMBOL` | `🦕·` | Character to be shown before Deno version |
+| `SPACESHIP_DENO_DEFAULT_VERSION` | ` ` | Deno version to be treated as default |
+| `SPACESHIP_DENO_COLOR` | `cyan` | Color of Deno section |
+
 ### Ruby (`ruby`)
 
 Ruby section is shown only in directories that contain `Gemfile`, or `Rakefile`, or any other file with `.rb` extension.
