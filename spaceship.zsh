@@ -56,6 +56,7 @@ if [ -z "$SPACESHIP_PROMPT_ORDER" ]; then
     xcode         # Xcode section
     swift         # Swift section
     golang        # Go section
+    v             # V section
     php           # PHP section
     rust          # Rust section
     haskell       # Haskell Stack section

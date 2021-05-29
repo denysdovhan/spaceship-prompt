@@ -81,6 +81,7 @@ SPACESHIP_PROMPT_ORDER=(
   jobs          # Background jobs indicator
   exit_code     # Exit code section
   char          # Prompt character
+  v             # V section
 )
 ```
 
