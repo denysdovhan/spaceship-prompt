@@ -463,6 +463,7 @@ Show activated conda virtual environment. Disable native conda prompt by `conda 
 | `SPACESHIP_CONDA_SYMBOL` | `🅒·` | Character to be shown before conda virtualenv section |
 | `SPACESHIP_CONDA_COLOR` | `blue` | Color of conda virtualenv environment section |
 | `SPACESHIP_CONDA_VERBOSE` | `true` | Toggle to truncate environment names under custom prefix |
+| `SPACESHIP_CONDA_IGNORE` | ` ` | Name of environment (if any) that is not to be shown |
 
 ### Pyenv (`pyenv`)
 

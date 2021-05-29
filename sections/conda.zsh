@@ -14,6 +14,7 @@ SPACESHIP_CONDA_SUFFIX="${SPACESHIP_CONDA_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFF
 SPACESHIP_CONDA_SYMBOL="${SPACESHIP_CONDA_SYMBOL="🅒 "}"
 SPACESHIP_CONDA_COLOR="${SPACESHIP_CONDA_COLOR="blue"}"
 SPACESHIP_CONDA_VERBOSE="${SPACESHIP_CONDA_VERBOSE=true}"
+SPACESHIP_CONDA_IGNORE="${SPACESHIP_CONDA_IGNORE=""}"
 
 # ------------------------------------------------------------------------------
 # Section
@@ -25,6 +26,9 @@ spaceship_conda() {
 
   # Check if running via conda virtualenv
   spaceship::exists conda && [ -n "$CONDA_DEFAULT_ENV" ] || return
+
+  # Check if current conda environment is to be ignored
+  [[ -n "$SPACESHIP_CONDA_IGNORE" && "$SPACESHIP_CONDA_IGNORE" == "$CONDA_DEFAULT_ENV" ]] && return
 
   local conda_env=${CONDA_DEFAULT_ENV}
 
