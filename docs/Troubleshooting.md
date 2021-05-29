@@ -6,20 +6,20 @@ This page aimed to help you fix the common problems encountered while using Spac
 
 You need to have a powerline patched font in order to properly display `git` branch symbol.
 
-* Install any powerline compatible font like [Fira Code](https://github.com/tonsky/FiraCode) or [others](https://github.com/powerline/fonts).
-* Configure your terminal emulator to [use that font](https://powerline.readthedocs.io/en/master/troubleshooting/osx.html).
+- Install any powerline compatible font like [Fira Code](https://github.com/tonsky/FiraCode) or [others](https://github.com/powerline/fonts).
+- Configure your terminal emulator to [use that font](https://powerline.readthedocs.io/en/master/troubleshooting/osx.html).
 
 ## What's the weird character in front of a section?
 
 This is not an issue with Spaceship prompt. Spaceship uses Unicode symbols to represent `SPACESHIP_*_SYMBOL` in sections. To solve this problem:
 
-* Verify your terminal emulator support Unicode characters with this command:
+- Verify your terminal emulator support Unicode characters with this command:
   ```zsh
   curl -L https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt
   # or
   wget -O - https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt
   ```
-* Configure your terminal emulator to use UTF-8 as character encoding.
+- Configure your terminal emulator to use UTF-8 as character encoding.
 
 In case Unicode symbols aren't supported, you can replace them to those that are compatible with your terminal with `SPACESHIP_*_SYMBOL` options. Check out [Options](./docs/Options.md) page for more information.
 
@@ -55,6 +55,7 @@ SPACESHIP_PROMPT_ORDER=(
   hg            # Mercurial section (hg_branch  + hg_status)
   # package     # Package version (Disabled)
   node          # Node.js section
+  cordova       # Cordova section
   ruby          # Ruby section
   elixir        # Elixir section
   # xcode       # Xcode section (Disabled)
@@ -86,10 +87,10 @@ SPACESHIP_PROMPT_ORDER=(
 
 Disabling a lot of unused section may achieve a significant performance boost. Here's a comparison of rendering Spaceship prompt 100 times with all sections enabled and with `SPACESHIP_PROMPT_ORDER` from example above:
 
-|                   | All section | With disabled sections |
-| :---------------- | :---------: | :--------------------: |
-| Inside Git repo*  |   `23.5s`   |         `21.3s`        |
-| Outside Git repo* |    `8.3s`   |          `7.4s`        |
+|                    | All section | With disabled sections |
+| :----------------- | :---------: | :--------------------: |
+| Inside Git repo\*  |   `23.5s`   |        `21.3s`         |
+| Outside Git repo\* |   `8.3s`    |         `7.4s`         |
 
 \* — `spaceship-prompt` repo is used in this test.
 
@@ -99,15 +100,15 @@ Disabling a lot of unused section may achieve a significant performance boost. H
 
 This issue is related to how your terminal emulator renders Unicode 9 characters. To fix this issue:
 
-* Make sure terminal uses _Unicode Version 9 Widths_.
-* Let your terminal render ambiguous-width characters as double-width.
+- Make sure terminal uses _Unicode Version 9 Widths_.
+- Let your terminal render ambiguous-width characters as double-width.
 
 In _iTerm_ follow these instructions:
 
-* Go _iTerm → Preferences… (⌘,) → Profiles → Text_
-* Check _Unicode Version 9 Widths_.
-* Check _Threat ambiguous-width characters as double-width_.
-* Reload terminal's tab.
+- Go _iTerm → Preferences… (⌘,) → Profiles → Text_
+- Check _Unicode Version 9 Widths_.
+- Check _Threat ambiguous-width characters as double-width_.
+- Reload terminal's tab.
 
 ## Why doesn't my prompt look like the preview?
 
@@ -115,11 +116,11 @@ In _iTerm_ follow these instructions:
 
 Preview shows `spaceship` prompt setup with:
 
-* [Hyper](https://hyper.is) as terminal emulator.
-* [One Dark](https://www.npmjs.com/package/hyperterm-atom-dark) color theme from [Atom](https://atom.io/) editor.
-* [Fira Code](https://github.com/tonsky/FiraCode) with with ligatures as primary font (16px size).
-* [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) to have commands colorized.
-* [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) to have browser-like autocompletions.
+- [Hyper](https://hyper.is) as terminal emulator.
+- [One Dark](https://www.npmjs.com/package/hyperterm-atom-dark) color theme from [Atom](https://atom.io/) editor.
+- [Fira Code](https://github.com/tonsky/FiraCode) with with ligatures as primary font (16px size).
+- [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) to have commands colorized.
+- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) to have browser-like autocompletions.
 
 See [screenshots](https://github.com/denysdovhan/spaceship-prompt/wiki/Screenshots) wiki for more color schemes examples.
 

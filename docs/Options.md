@@ -26,6 +26,7 @@ SPACESHIP_PROMPT_ORDER=(
   gradle        # Gradle section
   maven         # Maven section
   node          # Node.js section
+  cordova       # Cordova section
   ruby          # Ruby section
   elixir        # Elixir section
   xcode         # Xcode section
