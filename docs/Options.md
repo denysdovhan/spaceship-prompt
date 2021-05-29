@@ -603,6 +603,19 @@ Shows the active Terraform wokspace in directories that contain `.terraform/envi
 | `SPACESHIP_TERRAFORM_SYMBOL` | `🛠️·` | Character to be shown before Terraform workspace |
 | `SPACESHIP_TERRAFORM_COLOR` | `105` | Color of Terraform workspace section |
 
+### Sudo (`sudo`)
+
+Shows if the current shell has passwordless sudo available.
+
+| Variable | Default | Meaning |
+| :------- | :-----: | ------- |
+| `SPACESHIP_SUDO_SHOW`   | `auto` | Show if passwordless sudo is available. 'auto' means show if 'NOPASSWD' is not used. |
+| `SPACESHIP_SUDO_PREFIX` | `with·` | Prefix before Sudo status indicator |
+| `SPACESHIP_SUDO_SUFFIX` | `$SPACESHIP_PROMPT_DEFAULT_SUFFIX` | Suffix after Sudo status indicator |
+| `SPACESHIP_SUDO_COLOR`  | `yellow` | Color of Sudo status indicator |
+| `SPACESHIP_SUDO_SYMBOL`  | `⚡·` | Character to be shown before Sudo status indicator |
+| `SPACESHIP_SUDO_STATUS` | `sudo` | Status text to display along with symbol |
+
 ### Execution time (`exec_time`)
 
 Execution time of the last command. Will be displayed if it exceeds the set threshold of time.
