@@ -87,6 +87,7 @@ Spaceship is a minimalistic, powerful and extremely customizable [Zsh][zsh-url] 
 - Current Ruby version, through rvm/rbenv/chruby/asdf (`💎`).
 - Current Elm version (`🌳`)
 - Current Elixir version, through kiex/exenv/elixir (`💧`).
+- Curretn Flutter version and branch (`💙`).
 - Current Swift version, through swiftenv (`🐦`).
 - Current Xcode version, through xenv (`🛠`).
 - Current Go version (`🐹`).

@@ -297,6 +297,20 @@ Elixir section is shown only in directories that contain `mix.exs`, or any other
 | `SPACESHIP_ELIXIR_SYMBOL` | `💧·` | Character to be shown before Elixir version |
 | `SPACESHIP_ELIXIR_COLOR` | `magenta` | Color of Elixir section |
 
+### Flutter (`flutter`)
+
+Show current Flutter version and channel.   
+The Flutter section is displayed, by default, only in a Flutter context, ie. in directories that contain files/direcories associated with Flutter (`pubspec.yaml`|`*.(dart)`|`dart_tool`) or if in a Git repository that is a Flutter project  (`$git_root/pubspec.yaml`|`$git_root/lib/**/*.(dart)`|`$git_root/dart_tool`). To always show Flutter section set `SPACESHIP_FLUTTER_IN_CONTEXT_ONLY=false`.
+
+| Variable | Default | Meaning |
+| :------- | :-----: | ------- |
+| `SPACESHIP_FLUTTER_SHOW` | `true` | Show current Flutter version or not |
+| `SPACESHIP_FLUTTER_IN_CONTEXT_ONLY` | `true` | Show Flutter section only in a Flutter context |
+| `SPACESHIP_FLUTTER_PREFIX` | `$SPACESHIP_PROMPT_DEFAULT_PREFIX` | Prefix before the Flutter section |
+| `SPACESHIP_FLUTTER_SUFFIX` | `$SPACESHIP_PROMPT_DEFAULT_SUFFIX` | Suffix after the Flutter section |
+| `SPACESHIP_FLUTTER_SYMBOL` | `💙 ` | Character to be shown before Flutter version |
+| `SPACESHIP_FLUTTER_COLOR` | `blue` | Color of Flutter section |
+
 ### Xcode (`xcode`)
 
 Shows current version of Xcode. Local version has more priority than global.

@@ -53,6 +53,7 @@ if [ -z "$SPACESHIP_PROMPT_ORDER" ]; then
     ruby          # Ruby section
     elm           # Elm section
     elixir        # Elixir section
+    flutter       # Flutter section
     xcode         # Xcode section
     swift         # Swift section
     golang        # Go section

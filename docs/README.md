@@ -22,6 +22,7 @@
   * [Ruby (ruby)](/docs/Options.md#ruby-ruby)
   * [Elm (elm)](/docs/Options.md#elm-elm)
   * [Elixir (elixir)](/docs/Options.md#elixir-elixir)
+  * [Flutter (flutter)](/docs/Options.md#flutter)
   * [Xcode (xcode)](/docs/Options.md#xcode-xcode)
   * [Swift (swift)](/docs/Options.md#swift-swift)
   * [Go (go)](/docs/Options.md#go-golang)

@@ -57,6 +57,7 @@ SPACESHIP_PROMPT_ORDER=(
   node          # Node.js section
   ruby          # Ruby section
   elixir        # Elixir section
+  #flutter      # Flutter section
   # xcode       # Xcode section (Disabled)
   swift         # Swift section
   golang        # Go section
