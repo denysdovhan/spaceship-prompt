@@ -133,7 +133,8 @@ Hostname is shown only when you're connected via SSH unless you change this beha
 
 ### Directory (`dir`)
 
-Directory is always shown and truncated to the value of `SPACESHIP_DIR_TRUNC`. While you are in repository, it shows only root directory and folders inside it.
+Directory is always shown and truncated to the value of `SPACESHIP_DIR_TRUNC`.
+If `SPACESHIP_DIR_TRUNC_REPO` is set to `true`, and you are in repository, it shows only root directory and folders inside it.
 If current directory is write-protected or if current user has not enough rights to write in it, a padlock (by default) is displayed as a suffix.
 
 | Variable | Default | Meaning |
