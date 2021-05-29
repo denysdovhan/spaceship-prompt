@@ -40,6 +40,7 @@ SPACESHIP_PROMPT_ORDER=(
   gcloud        # Google Cloud Platform section
   venv          # virtualenv section
   conda         # conda virtualenv section
+  jabba         # jabba version section
   pyenv         # Pyenv section
   dotnet        # .NET section
   ember         # Ember.js section
@@ -463,6 +464,18 @@ Show activated conda virtual environment. Disable native conda prompt by `conda 
 | `SPACESHIP_CONDA_SYMBOL` | `🅒·` | Character to be shown before conda virtualenv section |
 | `SPACESHIP_CONDA_COLOR` | `blue` | Color of conda virtualenv environment section |
 | `SPACESHIP_CONDA_VERBOSE` | `true` | Toggle to truncate environment names under custom prefix |
+
+### Jabba version (`jabba`)
+
+Show activated jabba version.
+
+| Variable | Default | Meaning |
+| :------- | :-----: | ------- |
+| `SPACESHIP_JABBA_SHOW` | `true` | Show current Jabba version or not |
+| `SPACESHIP_JABBA_PREFIX` | `$SPACESHIP_PROMPT_DEFAULT_PREFIX` | Prefix before the conda virtualenv section |
+| `SPACESHIP_JABBA_SUFFIX` | `$SPACESHIP_PROMPT_DEFAULT_SUFFIX` | Suffix after the conda virtualenv section |
+| `SPACESHIP_JABBA_SYMBOL` | `☕️` | Character to be shown before conda virtualenv section |
+| `SPACESHIP_JABBA_COLOR` | `red` | Color of conda virtualenv environment section |
 
 ### Pyenv (`pyenv`)
 
