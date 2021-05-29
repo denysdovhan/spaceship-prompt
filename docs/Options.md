@@ -43,6 +43,7 @@ SPACESHIP_PROMPT_ORDER=(
   pyenv         # Pyenv section
   dotnet        # .NET section
   ember         # Ember.js section
+  react         # React.js section
   kubectl       # Kubectl context section
   terraform     # Terraform workspace section
   exec_time     # Execution time
@@ -499,6 +500,18 @@ Ember.js section is shown only in directories that contain a `ember-cli-build.js
 | `SPACESHIP_EMBER_SUFFIX` | `$SPACESHIP_PROMPT_DEFAULT_SUFFIX` | Suffix after Ember.js section |
 | `SPACESHIP_EMBER_SYMBOL` | `🐹·` | Character to be shown before Ember.js version |
 | `SPACESHIP_EMBER_COLOR` | `210` | Color of Ember.js section |
+
+### React.js (`react`)
+
+React.js section is shown only in directories that contain a `node_modules/react/package.json` file.
+
+| Variable | Default | Meaning |
+| :------- | :-----: | ------- |
+| `SPACESHIP_REACT_SHOW` | `true` | Current React.js section |
+| `SPACESHIP_REACT_PREFIX` | `$SPACESHIP_PROMPT_DEFAULT_PREFIX` | Prefix before React.js section |
+| `SPACESHIP_REACT_SUFFIX` | `$SPACESHIP_PROMPT_DEFAULT_SUFFIX` | Suffix after React.js section |
+| `SPACESHIP_REACT_SYMBOL` | `⚛️·` | Character to be shown before React.js version |
+| `SPACESHIP_REACT_COLOR` | `blue` | Color of React.js section |
 
 ### Kubernetes (`kubectl`)
 
