@@ -44,7 +44,7 @@ if [ -z "$SPACESHIP_PROMPT_ORDER" ]; then
     user          # Username section
     dir           # Current directory section
     host          # Hostname section
-    git           # Git section (git_branch + git_status)
+    git           # Git section (git_branch + git_status + git_commit)
     hg            # Mercurial section (hg_branch  + hg_status)
     gradle        # Gradle section
     maven         # Maven section
