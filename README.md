@@ -110,6 +110,7 @@ Spaceship is a minimalistic, powerful and extremely customizable [Zsh][zsh-url] 
 - Current Ember.js version, through ember-cli (`🐹`).
 - Current Kubectl context (`☸️`).
 - Current Terraform workspace (`🛠`).
+- Current IBM Cloud account (`👔`).
 - Package version, if there's is a package in current directory (`📦`).
 - Current battery level and status:
   - `⇡` - charging;
