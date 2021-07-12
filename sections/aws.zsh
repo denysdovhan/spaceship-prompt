@@ -13,6 +13,7 @@ SPACESHIP_AWS_PREFIX="${SPACESHIP_AWS_PREFIX="using "}"
 SPACESHIP_AWS_SUFFIX="${SPACESHIP_AWS_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"}"
 SPACESHIP_AWS_SYMBOL="${SPACESHIP_AWS_SYMBOL="☁️ "}"
 SPACESHIP_AWS_COLOR="${SPACESHIP_AWS_COLOR="208"}"
+SPACESHIP_AWS_PROFILE="${AWS_PROFILE="$AWS_VAULT"}"
 
 # ------------------------------------------------------------------------------
 # Section
@@ -26,12 +27,12 @@ spaceship_aws() {
   spaceship::exists aws || return
 
   # Is the current profile not the default profile
-  [[ -z $AWS_PROFILE ]] || [[ "$AWS_PROFILE" == "default" ]] && return
+  [[ -z $SPACESHIP_AWS_PROFILE ]] || [[ "$SPACESHIP_AWS_PROFILE" == "default" ]] && return
 
   # Show prompt section
   spaceship::section \
     "$SPACESHIP_AWS_COLOR" \
     "$SPACESHIP_AWS_PREFIX" \
-    "${SPACESHIP_AWS_SYMBOL}$AWS_PROFILE" \
+    "${SPACESHIP_AWS_SYMBOL}$SPACESHIP_AWS_PROFILE" \
     "$SPACESHIP_AWS_SUFFIX"
 }
