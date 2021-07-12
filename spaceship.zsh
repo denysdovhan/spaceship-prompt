@@ -49,6 +49,7 @@ if [ -z "$SPACESHIP_PROMPT_ORDER" ]; then
     gradle        # Gradle section
     maven         # Maven section
     package       # Package version
+    flutter       # Flutter section
     node          # Node.js section
     ruby          # Ruby section
     elm           # Elm section

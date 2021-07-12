@@ -6,6 +6,7 @@
 #   * npm
 #   * lerna
 #   * Cargo
+#   * Pub (Flutter)
 
 # ------------------------------------------------------------------------------
 # Configuration
@@ -59,6 +60,15 @@ spaceship_package() {
     # https://github.com/spaceship-prompt/spaceship-prompt/pull/617
     local pkgid=$(cargo pkgid 2>&1)
     echo $pkgid | grep -q "error:" || package_version=${pkgid##*\#}
+  fi
+
+  if [[ -f pubspec.yaml ]] && spaceship::exists flutter; then
+    if spaceship::exists ruby; then
+      PUBSPEC_YAML_PARSE="pubspec = YAML::load(STDIN.read); puts pubspec['version']"
+      package_version=$(cat pubspec.yaml | ruby -ryaml -e "${PUBSPEC_YAML_PARSE}")
+    elif spaceship::exists flutter; then
+      package_version=$(flutter pub deps | sed -n 3p | tr " " "\n" | sed -n 2p 2>/dev/null)
+    fi
   fi
 
   [[ -z $package_version || "$package_version" == "null" || "$package_version" == "undefined" ]] && return
