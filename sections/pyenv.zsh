@@ -22,6 +22,9 @@ SPACESHIP_PYENV_COLOR="${SPACESHIP_PYENV_COLOR="yellow"}"
 spaceship_pyenv() {
   [[ $SPACESHIP_PYENV_SHOW == false ]] && return
 
+  # Check if the current directory running via Virtualenv
+  [ ! -n "$VIRTUAL_ENV" ] || return
+
   # Show pyenv python version only for Python-specific folders
   [[ -n "$PYENV_VERSION" || -f .python-version || -f requirements.txt || -f pyproject.toml || -n *.py(#qN^/) ]] || return
 
