@@ -153,6 +153,18 @@ If current directory is write-protected or if current user has not enough rights
 | `SPACESHIP_DIR_LOCK_SYMBOL`  | ![·](https://user-images.githubusercontent.com/10276208/46248218-4af95d80-c434-11e8-8e25-595d792503f1.png) | The symbol displayed if directory is write-protected (requires powerline patched font) |
 | `SPACESHIP_DIR_LOCK_COLOR`   |                                                    `red`                                                    | Color for the lock symbol                                                              |
 
+### Architecture (`arch`)
+
+Architecture is always shown. It displays the CPU architecture of the underlying system or emulator.
+
+| Variable                |              Default               | Meaning                        |
+| :---------------------- | :--------------------------------: | ------------------------------ |
+| `SPACESHIP_ARCH_SHOW`   |                `true`              | Show CPU architecture          |
+| `SPACESHIP_ARCH_PREFIX` |                `on·`               | Prefix before architecture     |
+| `SPACESHIP_ARCH_SUFFIX` | `$SPACESHIP_PROMPT_DEFAULT_SUFFIX` | Suffix after architecture      |
+| `SPACESHIP_ARCH_SYMBOL` |                `💻·`               |                                |
+| `SPACESHIP_ARCH_COLOR`  |               `white`              | Color of CPU architecture text |
+
 ### Git (`git`)
 
 Git section consists of `git_branch` and `git_status` subsections. It is shown only in Git repositories.
