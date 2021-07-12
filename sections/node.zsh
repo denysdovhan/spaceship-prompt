@@ -35,7 +35,7 @@ spaceship_node() {
     node_version=$(nodenv version-name)
     [[ $node_version == "system" || $node_version == "node" ]] && return
   elif spaceship::exists node; then
-    node_version=$(node -v 2>/dev/null)
+    node_version=$(node -v 2>/dev/null | sed -e 's/\r//g')
   else
     return
   fi
