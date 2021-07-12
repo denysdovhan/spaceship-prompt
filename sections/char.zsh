@@ -24,7 +24,12 @@ SPACESHIP_CHAR_COLOR_SECONDARY="${SPACESHIP_CHAR_COLOR_SECONDARY="yellow"}"
 spaceship_char() {
   local 'color' 'char'
 
-  if [[ $RETVAL -eq 0 ]]; then
+  if [[ ! -z $SPACESHIP_CHAR_COLORS ]] ; then
+      local length="${#SPACESHIP_CHAR_COLORS[@]}"
+      local rand=`od -An -N4 -tuI < /dev/urandom`
+      local index=$(( $rand % ($length + 1) ))
+      color=$SPACESHIP_CHAR_COLORS[index]
+  elif [[ $RETVAL -eq 0 ]]; then
     color="$SPACESHIP_CHAR_COLOR_SUCCESS"
   else
     color="$SPACESHIP_CHAR_COLOR_FAILURE"
@@ -42,3 +47,4 @@ spaceship_char() {
     "$char" \
     "$SPACESHIP_CHAR_SUFFIX"
 }
+
