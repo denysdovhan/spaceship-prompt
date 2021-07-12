@@ -42,6 +42,7 @@ if [ -z "$SPACESHIP_PROMPT_ORDER" ]; then
   SPACESHIP_PROMPT_ORDER=(
     time          # Time stampts section
     user          # Username section
+    screen        # Linux Screen session name
     dir           # Current directory section
     host          # Hostname section
     git           # Git section (git_branch + git_status)
