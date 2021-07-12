@@ -106,6 +106,9 @@ source "$SPACESHIP_ROOT/lib/utils.zsh"
 # load hooks
 source "$SPACESHIP_ROOT/lib/hooks.zsh"
 
+# load widgets
+source "$SPACESHIP_ROOT/lib/widgets.zsh"
+
 # load section utils
 source "$SPACESHIP_ROOT/lib/section.zsh"
 
@@ -198,6 +201,15 @@ prompt_spaceship_setup() {
   # Add exec_time hooks
   add-zsh-hook preexec spaceship_exec_time_preexec_hook
   add-zsh-hook precmd spaceship_exec_time_precmd_hook
+
+  # The `add-zle-hook-widget` function is not guaranteed to be available.
+  # It was added in Zsh 5.3.
+  autoload -Uz +X add-zle-hook-widget 2>/dev/null
+  if (( $+functions[add-zle-hook-widget] )); then
+    # Add widgets
+    zle -N spaceship_reset_prompt_widget
+    add-zle-hook-widget zle-keymap-select spaceship_reset_prompt_widget
+  fi
 
   # Disable python virtualenv environment prompt prefix
   VIRTUAL_ENV_DISABLE_PROMPT=true

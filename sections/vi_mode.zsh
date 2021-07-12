@@ -21,24 +21,22 @@ SPACESHIP_VI_MODE_COLOR="${SPACESHIP_VI_MODE_COLOR="white"}"
 spaceship_vi_mode() {
   [[ $SPACESHIP_VI_MODE_SHOW == true ]] || return
 
-  if bindkey | grep "vi-quoted-insert" > /dev/null 2>&1; then # check if vi-mode enabled
-    local mode_indicator="${SPACESHIP_VI_MODE_INSERT}"
+  local mode_indicator="${SPACESHIP_VI_MODE_INSERT}"
 
-    case "${KEYMAP}" in
-      main|viins)
+  case "${KEYMAP}" in
+    main|viins)
       mode_indicator="${SPACESHIP_VI_MODE_INSERT}"
       ;;
-      vicmd)
+    vicmd)
       mode_indicator="${SPACESHIP_VI_MODE_NORMAL}"
       ;;
-    esac
+  esac
 
-    spaceship::section \
-      "$SPACESHIP_VI_MODE_COLOR" \
-      "$SPACESHIP_VI_MODE_PREFIX" \
-      "$mode_indicator" \
-      "$SPACESHIP_VI_MODE_SUFFIX"
-  fi
+  spaceship::section \
+    "$SPACESHIP_VI_MODE_COLOR" \
+    "$SPACESHIP_VI_MODE_PREFIX" \
+    "$mode_indicator" \
+    "$SPACESHIP_VI_MODE_SUFFIX"
 }
 
 # ------------------------------------------------------------------------------
