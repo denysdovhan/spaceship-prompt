@@ -20,6 +20,8 @@ SPACESHIP_GIT_STATUS_UNMERGED="${SPACESHIP_GIT_STATUS_UNMERGED="="}"
 SPACESHIP_GIT_STATUS_AHEAD="${SPACESHIP_GIT_STATUS_AHEAD="⇡"}"
 SPACESHIP_GIT_STATUS_BEHIND="${SPACESHIP_GIT_STATUS_BEHIND="⇣"}"
 SPACESHIP_GIT_STATUS_DIVERGED="${SPACESHIP_GIT_STATUS_DIVERGED="⇕"}"
+SPACESHIP_GIT_STATUS_TIMEOUT_DELAY="${SPACESHIP_GIT_STATUS_TIMEOUT_DELAY="0"}"
+SPACESHIP_GIT_STATUS_TIMEOUT_SYMBOL="${SPACESHIP_GIT_STATUS_TIMEOUT_SYMBOL="⌛"}"
 
 # ------------------------------------------------------------------------------
 # Section
@@ -37,7 +39,14 @@ spaceship_git_status() {
 
   local INDEX git_status=""
 
-  INDEX=$(command git status --porcelain -b 2> /dev/null)
+  INDEX=$(command timeout "$SPACESHIP_GIT_STATUS_TIMEOUT_DELAY" git status --porcelain -b 2> /dev/null)
+  if [[ $? -eq 124 ]]; then
+    # Status prefixes are colorized
+    spaceship::section \
+      "$SPACESHIP_GIT_STATUS_COLOR" \
+      "$SPACESHIP_GIT_STATUS_PREFIX$SPACESHIP_GIT_STATUS_TIMEOUT_SYMBOL$SPACESHIP_GIT_STATUS_SUFFIX"
+    return
+  fi
 
   # Check for untracked files
   if $(echo "$INDEX" | command grep -E '^\?\? ' &> /dev/null); then
