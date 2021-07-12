@@ -22,9 +22,6 @@ SPACESHIP_AWS_COLOR="${SPACESHIP_AWS_COLOR="208"}"
 spaceship_aws() {
   [[ $SPACESHIP_AWS_SHOW == false ]] && return
 
-  # Check if the AWS-cli is installed
-  spaceship::exists aws || return
-
   # Is the current profile not the default profile
   [[ -z $AWS_PROFILE ]] || [[ "$AWS_PROFILE" == "default" ]] && return
 
