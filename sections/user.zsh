@@ -35,7 +35,7 @@ spaceship_user() {
   then
     local 'user_color'
 
-    if [[ $USER == 'root' ]]; then
+    if [[ $UID == 0 ]]; then
       user_color=$SPACESHIP_USER_COLOR_ROOT
     else
       user_color="$SPACESHIP_USER_COLOR"
