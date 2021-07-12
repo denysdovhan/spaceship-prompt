@@ -6,20 +6,34 @@
 
 # TODO: Let sections register their own hooks via `spaceship::register_hook`
 
-# Execution time start
-spaceship_exec_time_preexec_hook() {
-  [[ $SPACESHIP_EXEC_TIME_SHOW == false ]] && return
-  SPACESHIP_EXEC_TIME_start=$(date +%s)
+spaceship_preexec_hook() {
+  spaceship_exec_time_preexec_hook
+
+  async_flush_jobs spaceship
 }
 
-# Execution time end
-spaceship_exec_time_precmd_hook() {
-  [[ $SPACESHIP_EXEC_TIME_SHOW == false ]] && return
-  [[ -n $SPACESHIP_EXEC_TIME_duration ]] && unset SPACESHIP_EXEC_TIME_duration
-  [[ -z $SPACESHIP_EXEC_TIME_start ]] && return
-  local SPACESHIP_EXEC_TIME_stop=$(date +%s)
-  SPACESHIP_EXEC_TIME_duration=$(( $SPACESHIP_EXEC_TIME_stop - $SPACESHIP_EXEC_TIME_start ))
-  unset SPACESHIP_EXEC_TIME_start
+spaceship_precmd_hook() {
+  spaceship_start_async_tasks
+
+  spaceship_exec_time_precmd_hook
+}
+
+spaceship_start_async_tasks() {
+  if [[ "${SPACESHIP_ASYNC_init:-0}" = 0 ]]
+  then
+    # Create async worker
+    async_start_worker spaceship -u -n
+    async_register_callback spaceship spaceship_async_callback
+    typeset -g SPACESHIP_ASYNC_init=1
+  fi
+
+  # Register async jobs
+  async_job spaceship spaceship_async_git_branch "$PWD"
+}
+
+spaceship_async_callback() {
+  local job="$1" ret="$2" output="$3"
+  [[ "$ret" = 0 ]] && "${job}_callback" "$output"
 }
 
 # vcs_info hook

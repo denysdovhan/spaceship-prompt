@@ -186,6 +186,7 @@ spaceship_ps2() {
 prompt_spaceship_setup() {
   autoload -Uz vcs_info
   autoload -Uz add-zsh-hook
+  autoload -Uz async && async
 
   # This variable is a magic variable used when loading themes with zsh's prompt
   # function. It will ensure the proper prompt options are set.
@@ -196,8 +197,8 @@ prompt_spaceship_setup() {
   setopt noprompt{bang,cr,percent,subst} "prompt${^prompt_opts[@]}"
 
   # Add exec_time hooks
-  add-zsh-hook preexec spaceship_exec_time_preexec_hook
-  add-zsh-hook precmd spaceship_exec_time_precmd_hook
+  add-zsh-hook preexec spaceship_preexec_hook
+  add-zsh-hook precmd spaceship_precmd_hook
 
   # Disable python virtualenv environment prompt prefix
   VIRTUAL_ENV_DISABLE_PROMPT=true
