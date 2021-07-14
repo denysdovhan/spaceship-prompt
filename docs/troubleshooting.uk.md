@@ -58,6 +58,7 @@ SPACESHIP_PROMPT_ORDER=(
   # package     # Package version (Disabled)
   node          # Node.js section
   ruby          # Ruby section
+  python        # Python section
   elixir        # Elixir section
   # xcode       # Xcode section (Disabled)
   swift         # Swift section
@@ -71,7 +72,6 @@ SPACESHIP_PROMPT_ORDER=(
   gcloud        # Google Cloud Platform section
   venv          # virtualenv section
   conda         # conda virtualenv section
-  pyenv         # Pyenv section
   dotnet        # .NET section
   # ember       # Ember.js section (Disabled)
   kubectl       # Kubectl context section

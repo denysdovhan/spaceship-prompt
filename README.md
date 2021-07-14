@@ -91,6 +91,7 @@ Spaceship is a minimalistic, powerful and extremely customizable [Zsh][zsh-url] 
 - Indicator for jobs in the background (`✦`).
 - Current Node.js version, through nvm/nodenv/n (`⬢`).
 - Current Ruby version, through rvm/rbenv/chruby/asdf (`💎`).
+- Current Python version (`🐍`).
 - Current Elm version (`🌳`)
 - Current Elixir version, through kiex/exenv/elixir (`💧`).
 - Current Swift version, through swiftenv (`🐦`).
@@ -105,7 +106,6 @@ Spaceship is a minimalistic, powerful and extremely customizable [Zsh][zsh-url] 
 - Current Google Cloud Platform gcloud active configuration (`☁️`).
 - Current Python virtualenv.
 - Current Conda virtualenv (`🅒`).
-- Current Python pyenv (`🐍`).
 - Current .NET SDK version, through dotnet-cli (`.NET`).
 - Current Ember.js version, through ember-cli (`🐹`).
 - Current Kubectl context (`☸️`).

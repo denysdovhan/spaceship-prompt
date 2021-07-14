@@ -51,6 +51,7 @@ if [ -z "$SPACESHIP_PROMPT_ORDER" ]; then
     package       # Package version
     node          # Node.js section
     ruby          # Ruby section
+    python        # Python section
     elm           # Elm section
     elixir        # Elixir section
     xcode         # Xcode section
@@ -65,7 +66,6 @@ if [ -z "$SPACESHIP_PROMPT_ORDER" ]; then
     gcloud        # Google Cloud Platform section
     venv          # virtualenv section
     conda         # conda virtualenv section
-    pyenv         # Pyenv section
     dotnet        # .NET section
     ember         # Ember.js section
     kubectl       # Kubectl context section
@@ -109,6 +109,9 @@ source "$SPACESHIP_ROOT/lib/hooks.zsh"
 # load section utils
 source "$SPACESHIP_ROOT/lib/section.zsh"
 
+# load environment detection
+source "$SPACESHIP_ROOT/scripts/info.sh"
+
 # ------------------------------------------------------------------------------
 # SECTIONS
 # Sourcing sections the prompt consists of
@@ -130,11 +133,12 @@ done
 # Show deprecation messages for options that are set, but not supported
 # ------------------------------------------------------------------------------
 
-spaceship::deprecated SPACESHIP_PROMPT_SYMBOL "Use %BSPACESHIP_CHAR_SYMBOL%b instead."
-spaceship::deprecated SPACESHIP_BATTERY_ALWAYS_SHOW "Use %BSPACESHIP_BATTERY_SHOW='always'%b instead."
-spaceship::deprecated SPACESHIP_BATTERY_CHARGING_SYMBOL "Use %BSPACESHIP_BATTERY_SYMBOL_CHARGING%b instead."
-spaceship::deprecated SPACESHIP_BATTERY_DISCHARGING_SYMBOL "Use %BSPACESHIP_BATTERY_SYMBOL_DISCHARGING%b instead."
-spaceship::deprecated SPACESHIP_BATTERY_FULL_SYMBOL "Use %BSPACESHIP_BATTERY_SYMBOL_FULL%b instead."
+# pyenv to Python deprecation warnings
+spaceship::deprecated SPACESHIP_PYENV_SHOW "Use %BSPACESHIP_PYTHON_SHOW%b instead"
+spaceship::deprecated SPACESHIP_PYENV_PREFIX "Use %BSPACESHIP_PYTHON_PREFIX%b instead"
+spaceship::deprecated SPACESHIP_PYENV_SUFFIX "Use %BSPACESHIP_PYTHON_SUFFIX%b instead"
+spaceship::deprecated SPACESHIP_PYENV_SYMBOL "Use %BSPACESHIP_PYTHON_SYMBOL%b instead"
+spaceship::deprecated SPACESHIP_PYENV_COLOR "Use %bSPACESHIP_PYTHON_COLOR%b instead"
 
 # ------------------------------------------------------------------------------
 # PROMPTS
