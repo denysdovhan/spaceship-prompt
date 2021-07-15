@@ -45,9 +45,13 @@ spaceship_vi_mode() {
 # Helpers
 # ------------------------------------------------------------------------------
 
+zle-keymap-select() {
+  # refresh cache for vi_mode and redraw the prompt
+  spaceship::refresh_cache_item "vi_mode" "true"
+}
+
 # Temporarily switch to vi-mode
 spaceship_vi_mode_enable() {
-  function zle-keymap-select() { zle reset-prompt ; zle -R }
   zle -N zle-keymap-select
   bindkey -v
 }

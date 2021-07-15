@@ -28,7 +28,15 @@ source "$SPACESHIP_ROOT/sections/hg_status.zsh"
 spaceship_hg() {
   [[ $SPACESHIP_HG_SHOW == false ]] && return
 
-  local hg_branch="$(spaceship_hg_branch)" hg_status="$(spaceship_hg_status)"
+  local hg_branch hg_status
+
+  __SS_DATA[section_result]=""
+  spaceship_hg_branch
+  hg_branch="${__SS_DATA[section_result]}"
+
+  __SS_DATA[section_result]=""
+  spaceship_hg_status
+  hg_status="${__SS_DATA[section_result]}"
 
   [[ -z $hg_branch ]] && return
 

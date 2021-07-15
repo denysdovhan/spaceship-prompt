@@ -50,7 +50,8 @@ tearDown() {
 
 test_elm() {
   local expected="%{%B%}via %{%b%}%{%B%F{cyan}%}🌳 v0.20.0%{%b%f%}%{%B%}%{%b%}"
-  local actual="$(spaceship_prompt)"
+  local actual=""
+  prompt_spaceship_precmd; actual="${__ss_unsafe[prompt]}"
 
   assertEquals "render elm" "$expected" "$actual"
 }
@@ -59,42 +60,45 @@ test_elm_show_false() {
   SPACESHIP_ELM_SHOW=false
 
   local expected=""
-  local actual="$(spaceship_prompt)"
+  local actual=""
+  prompt_spaceship_precmd; actual="${__ss_unsafe[prompt]}"
 
   assertEquals "don't render elm" "$expected" "$actual"
 }
 
 test_elm_files() {
   local expected="%{%B%}via %{%b%}%{%B%F{cyan}%}🌳 v0.20.0%{%b%f%}%{%B%}%{%b%}"
-  local actual="$(spaceship_prompt)"
+  local actual=""
+  prompt_spaceship_precmd; actual="${__ss_unsafe[prompt]}"
 
   assertEquals "render elm when test.elm exists" "$expected" "$actual"
 
   rm test.elm
   touch elm.json
 
-  local actual="$(spaceship_prompt)"
+  prompt_spaceship_precmd; actual="${__ss_unsafe[prompt]}"
 
   assertEquals "render elm when elm.json exists" "$expected" "$actual"
 
   rm elm.json
   touch elm-package.json
 
-  local actual="$(spaceship_prompt)"
+  prompt_spaceship_precmd; actual="${__ss_unsafe[prompt]}"
 
   assertEquals "render elm when elm-package.json exists" "$expected" "$actual"
 
   rm elm-package.json
   mkdir elm-stuff
 
-  local actual="$(spaceship_prompt)"
+  prompt_spaceship_precmd; actual="${__ss_unsafe[prompt]}"
 
   assertEquals "render elm when elm-stuff exists" "$expected" "$actual"
 
   rm -r elm-stuff
 
   local expected=""
-  local actual="$(spaceship_prompt)"
+  local actual=""
+  prompt_spaceship_precmd; actual="${__ss_unsafe[prompt]}"
 
   assertEquals "don't render when no elm files are present" "$expected" "$actual"
 }
@@ -103,7 +107,8 @@ test_elm_symbol() {
   SPACESHIP_ELM_SYMBOL="🌵 "
 
   local expected="%{%B%}via %{%b%}%{%B%F{cyan}%}🌵 v0.20.0%{%b%f%}%{%B%}%{%b%}"
-  local actual="$(spaceship_prompt)"
+  local actual=""
+  prompt_spaceship_precmd; actual="${__ss_unsafe[prompt]}"
 
   assertEquals "render elm with custom symbol" "$expected" "$actual"
 }
@@ -113,7 +118,8 @@ test_elm_prefix() {
   SPACESHIP_ELM_SUFFIX=''
 
   local expected="%{%B%}prefix%{%b%}%{%B%F{cyan}%}🌳 v0.20.0%{%b%f%}%{%B%}%{%b%}"
-  local actual="$(spaceship_prompt)"
+  local actual=""
+  prompt_spaceship_precmd; actual="${__ss_unsafe[prompt]}"
 
   assertEquals "render elm with prefix" "$expected" "$actual"
 }
@@ -123,7 +129,8 @@ test_elm_suffix() {
   SPACESHIP_ELM_SUFFIX='suffix'
 
   local expected="%{%B%}%{%b%}%{%B%F{cyan}%}🌳 v0.20.0%{%b%f%}%{%B%}suffix%{%b%}"
-  local actual="$(spaceship_prompt)"
+  local actual=""
+  prompt_spaceship_precmd; actual="${__ss_unsafe[prompt]}"
 
   assertEquals "render elm with suffix" "$expected" "$actual"
 }

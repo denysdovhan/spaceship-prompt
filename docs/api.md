@@ -110,6 +110,16 @@ echo $SPACESHIP_ROOT
 #> /path/to/spaceship-prompt
 ```
 
+## `SPACESHIP_CUSTOM_SECTION_LOCATION`
+
+Path where custom section files are auto sourced. Defaults to `$HOME/.config/spaceship/sections`.
+
+Custom section name and function name should follow the same pattern as the built/core sections. To be specific, a custom section named `foobar` should be rendered with function `spaceship_foobar` and stored in file `${SPACESHIP_CUSTOM_SECTION_LOCATION}/foobar.zsh`.
+
+To load a custom section defined in a file, you should tag the section name with `custom` (like `foobar::custom`) in the array `SPACESHIP_PROMPT_ORDER`. Tag `custom` is only required for custom section sourced from a file by Spaceship. If you've sourced the file manually before spaceship is loaded, there's no need to use the tag `custom`.
+
+**Note**: custom section is preferred over core/builtin section with the same name.
+
 ## `spaceship::section <color> [prefix] <content> [suffix]`
 
 This command displays prompt section prefixed with `prefix`, suffixed with `suffix` and `content` painted in `color`. **Bold** style is applied by default.

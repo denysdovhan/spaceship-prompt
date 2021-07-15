@@ -19,6 +19,8 @@ SPACESHIP_GIT_BRANCH_COLOR="${SPACESHIP_GIT_BRANCH_COLOR="magenta"}"
 spaceship_git_branch() {
   [[ $SPACESHIP_GIT_BRANCH_SHOW == false ]] && return
 
+  vcs_info
+
   local git_current_branch="$vcs_info_msg_0_"
   [[ -z "$git_current_branch" ]] && return
 
@@ -29,3 +31,9 @@ spaceship_git_branch() {
     "$SPACESHIP_GIT_BRANCH_COLOR" \
     "$SPACESHIP_GIT_BRANCH_PREFIX${git_current_branch}$SPACESHIP_GIT_BRANCH_SUFFIX"
 }
+
+autoload -Uz vcs_info
+
+# TODO: fully utilize vcs_info
+zstyle ':vcs_info:git*' formats '%b'
+zstyle ':vcs_info:*' enable git

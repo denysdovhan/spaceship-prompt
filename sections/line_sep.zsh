@@ -8,5 +8,6 @@
 
 # Should it write prompt in two lines or not?
 spaceship_line_sep() {
-  [[ $SPACESHIP_PROMPT_SEPARATE_LINE == true ]] && echo -n "$NEWLINE"
+  local NEWLINE=$'\n'
+  [[ $SPACESHIP_PROMPT_SEPARATE_LINE == true ]] && __SS_DATA[section_result]="$NEWLINE"
 }

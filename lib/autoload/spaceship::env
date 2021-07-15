@@ -91,3 +91,5 @@ spaceship::env() {
   get_os
   get_term
 }
+
+spaceship::env

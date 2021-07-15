@@ -28,7 +28,15 @@ source "$SPACESHIP_ROOT/sections/git_status.zsh"
 spaceship_git() {
   [[ $SPACESHIP_GIT_SHOW == false ]] && return
 
-  local git_branch="$(spaceship_git_branch)" git_status="$(spaceship_git_status)"
+  local git_branch git_status
+
+  __SS_DATA[section_result]=""
+  spaceship_git_branch
+  git_branch="${__SS_DATA[section_result]}"
+
+  __SS_DATA[section_result]=""
+  spaceship_git_status
+  git_status="${__SS_DATA[section_result]}"
 
   [[ -z $git_branch ]] && return
 

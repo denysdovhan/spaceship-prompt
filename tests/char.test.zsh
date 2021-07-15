@@ -49,7 +49,8 @@ tearDown() {
 test_char() {
   SPACESHIP_CHAR_COLOR_SUCCESS=blue
   local expected="%{%B%}%{%b%}%{%B%F{$SPACESHIP_CHAR_COLOR_SUCCESS}%}➜ %{%b%f%}%{%B%}%{%b%}"
-  local actual="$(spaceship_prompt)"
+  local actual=""
+  prompt_spaceship_precmd; actual="${__ss_unsafe[prompt]}"
 
   assertEquals "render char" "$expected" "$actual"
 }
@@ -57,8 +58,9 @@ test_char() {
 test_char_failure() {
   SPACESHIP_CHAR_COLOR_FAILURE=yellow
   local expected="%{%B%}%{%b%}%{%B%F{$SPACESHIP_CHAR_COLOR_FAILURE}%}➜ %{%b%f%}%{%B%}%{%b%}"
+  local actual=""
   command false # this command should exit with non-zero code
-  local actual="$(spaceship_prompt)"
+  prompt_spaceship_precmd; actual="${__ss_unsafe[prompt]}"
 
   assertEquals "render char with failure" "$expected" "$actual"
 }
@@ -67,7 +69,8 @@ test_char_symbol() {
   SPACESHIP_CHAR_SYMBOL='-> '
 
   local expected="%{%B%}%{%b%}%{%B%F{green}%}$SPACESHIP_CHAR_SYMBOL%{%b%f%}%{%B%}%{%b%}"
-  local actual="$(spaceship_prompt)"
+  local actual=""
+  prompt_spaceship_precmd; actual="${__ss_unsafe[prompt]}"
 
   assertEquals "render char with custom symbol" "$expected" "$actual"
 }
@@ -77,7 +80,8 @@ test_char_prefix() {
   SPACESHIP_CHAR_SUFFIX=''
 
   local expected="%{%B%}$SPACESHIP_CHAR_PREFIX%{%b%}%{%B%F{green}%}➜ %{%b%f%}%{%B%}$SPACESHIP_CHAR_SUFFIX%{%b%}"
-  local actual="$(spaceship_prompt)"
+  local actual=""
+  prompt_spaceship_precmd; actual="${__ss_unsafe[prompt]}"
 
   assertEquals "render char with prefix" "$expected" "$actual"
 }
@@ -87,7 +91,8 @@ test_char_suffix() {
   SPACESHIP_CHAR_SUFFIX='suffix'
 
   local expected="%{%B%}$SPACESHIP_CHAR_PREFIX%{%b%}%{%B%F{green}%}➜ %{%b%f%}%{%B%}$SPACESHIP_CHAR_SUFFIX%{%b%}"
-  local actual="$(spaceship_prompt)"
+  local actual=""
+  prompt_spaceship_precmd; actual="${__ss_unsafe[prompt]}"
 
   assertEquals "render char with suffix" "$expected" "$actual"
 }

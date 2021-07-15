@@ -9,9 +9,7 @@
 # Useful for issue reporting
 export SPACESHIP_VERSION='3.12.26'
 
-# Common-used variable for new line separator
-NEWLINE='
-'
+typeset -gAH __SS_DATA
 
 # Determination of Spaceship working directory
 # https://git.io/vdBH7
@@ -95,6 +93,9 @@ SPACESHIP_PROMPT_SUFFIXES_SHOW="${SPACESHIP_PROMPT_SUFFIXES_SHOW=true}"
 SPACESHIP_PROMPT_DEFAULT_PREFIX="${SPACESHIP_PROMPT_DEFAULT_PREFIX="via "}"
 SPACESHIP_PROMPT_DEFAULT_SUFFIX="${SPACESHIP_PROMPT_DEFAULT_SUFFIX=" "}"
 
+# RPROMPT
+SPACESHIP_RPROMPT_ADD_NEWLINE="${SPACESHIP_RPROMPT_ADD_NEWLINE=false}"
+
 # ------------------------------------------------------------------------------
 # LIBS
 # Spaceship utils/hooks/etc
@@ -109,24 +110,84 @@ source "$SPACESHIP_ROOT/lib/hooks.zsh"
 # load section utils
 source "$SPACESHIP_ROOT/lib/section.zsh"
 
-# load environment detection
-source "$SPACESHIP_ROOT/scripts/info.sh"
-
 # ------------------------------------------------------------------------------
 # SECTIONS
 # Sourcing sections the prompt consists of
 # ------------------------------------------------------------------------------
 
-for section in $(spaceship::union $SPACESHIP_PROMPT_ORDER $SPACESHIP_RPROMPT_ORDER); do
-  if [[ -f "$SPACESHIP_ROOT/sections/$section.zsh" ]]; then
-    source "$SPACESHIP_ROOT/sections/$section.zsh"
-  elif spaceship::defined "spaceship_$section"; then
-    # Custom section is declared, nothing else to do
-    continue
-  else
-    echo "Section '$section' was not loaded."
+# Placeholder string
+SPACESHIP_SECTION_PLACEHOLDER="${SPACESHIP_SECTION_PLACEHOLDER="…"}"
+
+# Load functions for sections defined in prompt order arrays
+#
+# @args
+#   $1 - prompt/rpromp/""
+spaceship::load_sections() {
+  local -a alignments=("prompt" "rprompt")
+  local -a raw_sections section_meta
+  local sections_var section raw_section
+  local load_async=false
+
+  [[ -n $1 ]] && alignments=("$1")
+
+  for alignment in "${alignments[@]}"; do
+    # Reset related cache
+    __SS_DATA[${alignment}_raw_sections]=""
+    __SS_DATA[${alignment}_sections]=""
+    __SS_DATA[async_${alignment}_sections]=""
+
+    sections_var="SPACESHIP_${(U)alignment}_ORDER"
+    raw_sections=(${(P)sections_var})
+    for raw_section in "${(@)raw_sections}"; do
+      # Split by double-colon
+      section_meta=(${(s.::.)raw_section})
+      # First value is always section name
+      section=${section_meta[1]}
+
+      # Cache sections
+      for tag in ${section_meta[2,-1]}; do
+        __SS_DATA[${tag}_${alignment}_sections]+="${section} "
+
+        # Special Case: Remember that async lib should be loaded
+        [[ "$tag" == "async" ]] && load_async=true
+      done
+
+      # Prefer custom section over same name builtin section
+      if spaceship::defined "spaceship_$section"; then
+        # Custom section is declared, nothing else to do
+        continue
+      elif [[ -f "$SPACESHIP_ROOT/sections/$section.zsh" ]]; then
+        source "$SPACESHIP_ROOT/sections/$section.zsh"
+      else
+        # file not found!
+        # If this happens, we remove the section from the configured elements,
+        # so that we avoid printing errors over and over.
+        print -P "%F{yellow}Warning!%f The '%F{cyan}${section}%f' section was not found. Removing it from the prompt."
+        SPACESHIP_PROMPT_ORDER=("${(@)SPACESHIP_PROMPT_ORDER:#${raw_section}}")
+        SPACESHIP_RPROMPT_ORDER=("${(@)SPACESHIP_RPROMPT_ORDER:#${raw_section}}")
+        for tag in ${section_meta[2,-1]}; do
+          __SS_DATA[${tag}_${alignment}_sections]="${__SS_DATA[${tag}_${alignment}_sections]%${section} } "
+        done
+      fi
+    done
+
+    # Cache configured sections! As nested arrays are not really possible,
+    # store as single string, separated by whitespace.
+    # Cache the raw_sections after invalid ones are removed
+    raw_sections=(${(P)sections_var})
+    __SS_DATA[${alignment}_raw_sections]="${raw_sections[*]}"
+    __SS_DATA[${alignment}_sections]="${raw_sections[@]%::*}"
+  done
+
+  # Load Async libs at last, because before initializing
+  # ZSH-Async, all functions must be defined.
+  if ${load_async}; then
+    __SS_DATA[async]=true
+    # Avoid duplicate sourcing and loading of zsh-async by checking flag ASYNC_INIT_DONE
+    (( ASYNC_INIT_DONE )) || source "${SPACESHIP_ROOT}/modules/zsh-async/async.zsh"
   fi
-done
+}
+spaceship::load_sections
 
 # ------------------------------------------------------------------------------
 # BACKWARD COMPATIBILITY WARNINGS
@@ -139,83 +200,6 @@ spaceship::deprecated SPACESHIP_PYENV_PREFIX "Use %BSPACESHIP_PYTHON_PREFIX%b in
 spaceship::deprecated SPACESHIP_PYENV_SUFFIX "Use %BSPACESHIP_PYTHON_SUFFIX%b instead"
 spaceship::deprecated SPACESHIP_PYENV_SYMBOL "Use %BSPACESHIP_PYTHON_SYMBOL%b instead"
 spaceship::deprecated SPACESHIP_PYENV_COLOR "Use %bSPACESHIP_PYTHON_COLOR%b instead"
-
-# ------------------------------------------------------------------------------
-# PROMPTS
-# An entry point of prompt
-# ------------------------------------------------------------------------------
-
-# PROMPT
-# Primary (left) prompt
-spaceship_prompt() {
-  # Retrieve exit code of last command to use in exit_code
-  # Must be captured before any other command in prompt is executed
-  # Must be the very first line in all entry prompt functions, or the value
-  # will be overridden by a different command execution - do not move this line!
-  RETVAL=$?
-
-  # Should it add a new line before the prompt?
-  [[ $SPACESHIP_PROMPT_ADD_NEWLINE == true ]] && echo -n "$NEWLINE"
-
-  # Compose prompt from the order
-  spaceship::compose_prompt $SPACESHIP_PROMPT_ORDER
-}
-
-# $RPROMPT
-# Optional (right) prompt
-spaceship_rprompt() {
-  # Retrieve exit code of last command to use in exit_code
-  RETVAL=$?
-
-  spaceship::compose_prompt $SPACESHIP_RPROMPT_ORDER
-}
-
-# PS2
-# Continuation interactive prompt
-spaceship_ps2() {
-  # Retrieve exit code of last command to use in exit_code
-  RETVAL=$?
-
-  local char="${SPACESHIP_CHAR_SYMBOL_SECONDARY="$SPACESHIP_CHAR_SYMBOL"}"
-  spaceship::section "$SPACESHIP_CHAR_COLOR_SECONDARY" "$char"
-}
-
-# ------------------------------------------------------------------------------
-# SETUP
-# Setup requirements for prompt
-# ------------------------------------------------------------------------------
-
-# Runs once when user opens a terminal
-# All preparation before drawing prompt should be done here
-prompt_spaceship_setup() {
-  autoload -Uz vcs_info
-  autoload -Uz add-zsh-hook
-
-  # This variable is a magic variable used when loading themes with zsh's prompt
-  # function. It will ensure the proper prompt options are set.
-  prompt_opts=(cr percent sp subst)
-
-  # Borrowed from promptinit, sets the prompt options in case the prompt was not
-  # initialized via promptinit.
-  setopt noprompt{bang,cr,percent,subst} "prompt${^prompt_opts[@]}"
-
-  # Add exec_time hooks
-  add-zsh-hook preexec spaceship_exec_time_preexec_hook
-  add-zsh-hook precmd spaceship_exec_time_precmd_hook
-
-  # Disable python virtualenv environment prompt prefix
-  VIRTUAL_ENV_DISABLE_PROMPT=true
-
-  # Configure vcs_info helper for potential use in the future
-  add-zsh-hook precmd spaceship_exec_vcs_info_precmd_hook
-  zstyle ':vcs_info:*' enable git
-  zstyle ':vcs_info:git*' formats '%b'
-
-  # Expose Spaceship to environment variables
-  PROMPT='$(spaceship_prompt)'
-  PS2='$(spaceship_ps2)'
-  RPS1='$(spaceship_rprompt)'
-}
 
 # ------------------------------------------------------------------------------
 # ENTRY POINT
